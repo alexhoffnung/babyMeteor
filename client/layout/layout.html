@@ -1,9 +1,8 @@
 <template name="layout">
+ 	{{ > loginButtons }}
 	<section class="wall">
-	{{> loginButtons}}
-
+	{{ > userbar }}
 	<hr>
- 	
  	{{ > yield  }}
  	</section>
 </template>

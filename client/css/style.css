@@ -5,21 +5,44 @@ body {
   background-color: #315481;
   background-image: linear-gradient(to bottom, #315481, #918e82 100%);
   background-attachment: fixed;
-
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
   padding: 0;
   margin: 0;
+}
 
-  font-size: 14px;
+.wall {
+  margin: 20px;
+  padding: 20px;
+  border: 1pt white solid;
+  border-radius: 10px;
+}
+
+.welcome-link {
+  border: 1pt white solid;
+  border-radius: 10px; 
+  align-self: center; 
+  padding: 15px 0;
+}
+
+h5.welcome-link-title {
+  font-size: 2.5rem;
+  color: white;
+}
+
+.ui-buttons {
+  text-align: center;
+}
+
+.ui-button {
+  margin: 5px 0;
+}
+
+.glyphicon {
+    font-size: 50px;
+    font-color: white;
 }
 
 .container {
-  max-width: 600px;
+  align-self: center;
   margin: 0 auto;
   min-height: 100%;
   background: white;

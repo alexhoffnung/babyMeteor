@@ -16,7 +16,11 @@ if (Meteor.isClient) {
       return Session.get("hideCompleted");
     },
     incompleteCount: function () {
-      return Tasks.find({checked: {$ne: true}}).count();
+      var currentUserId = Meteor.userId();
+      console.log(currentUserId);
+      console.log( Meteor.user().username);
+      console.log(Tasks.find( { $and: [ {checked: {$ne: true}}, { createdBy:Meteor.user().username } ] } ).count());
+      return Tasks.find( { $and: [ {checked: {$ne: true}}, { createdBy:Meteor.user().username } ] } ).count();
     }
   });
 

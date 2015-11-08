@@ -2,13 +2,14 @@ if (Meteor.isClient) {
   // This code only runs on the client
   Template.tasks.helpers({
     tasks: function () {
+      var currentUserId = Meteor.userId();
       if (Session.get("hideCompleted")) {
         // If hide completed is checked, filter tasks
-        return Tasks.find({checked: {$ne: true}}, {sort: {createdAt: -1}});
+        return Tasks.find({checked: {$ne: true}}, {owner: currentUserId},  {sort: {createdAt: -1}});
       } 
       else {
         // Otherwise, return all of the tasks
-        return Tasks.find({}, {sort: {createdAt: -1}});
+        return Tasks.find({owner: currentUserId}, {sort: {createdAt: -1}});
       }
     },
     hideCompleted: function () {
@@ -24,6 +25,9 @@ if (Meteor.isClient) {
     "submit .new-task": function (event) {
       // Prevent default browser form submit
       event.preventDefault();
+
+      // Get current user id
+      var currentUserId = Meteor.userId();
  
       // Get value from form element
       var text = event.target.text.value;
@@ -32,8 +36,8 @@ if (Meteor.isClient) {
       Tasks.insert({
         text: text,
         createdAt: new Date(),            // current time
-        owner: Meteor.userId(),           // _id of logged in user
-        username: Meteor.user().username  // username of logged in user
+        owner: currentUserId,           // _id of logged in user
+        createdBy: Meteor.user().username  // username of logged in user
       });
  
       // Clear form

@@ -5,7 +5,7 @@ if (Meteor.isClient) {
       var currentUserId = Meteor.userId();
       if (Session.get("hideCompleted")) {
         // If hide completed is checked, filter tasks
-        return Tasks.find({checked: {$ne: true}}, {owner: currentUserId},  {sort: {createdAt: -1}});
+        return Tasks.find({ $and: [ {checked: {$ne: true}}, { owner:currentUserId } ] },  {sort: {createdAt: -1}});
       } 
       else {
         // Otherwise, return all of the tasks
@@ -17,10 +17,7 @@ if (Meteor.isClient) {
     },
     incompleteCount: function () {
       var currentUserId = Meteor.userId();
-      console.log(currentUserId);
-      console.log( Meteor.user().username);
-      console.log(Tasks.find( { $and: [ {checked: {$ne: true}}, { createdBy:Meteor.user().username } ] } ).count());
-      return Tasks.find( { $and: [ {checked: {$ne: true}}, { createdBy:Meteor.user().username } ] } ).count();
+      return Tasks.find( { $and: [ {checked: {$ne: true}}, { owner:currentUserId } ] } ).count();
     }
   });
 
@@ -48,7 +45,10 @@ if (Meteor.isClient) {
       event.target.text.value = "";
     },
     "change .hide-completed input": function (event) {
+      console.log(event.target.checked);
       Session.set("hideCompleted", event.target.checked);
+      var hideCompletedValue = Session.get("hideCompleted");
+      console.log(hideCompletedValue);
     }
   });
 }

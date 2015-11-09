@@ -61,6 +61,31 @@ Orders.attachSchema([
   Schemas.paymentInformation
 ]);
 
+Template.steps_semanticUI.events({
+    "onSubmit .wizard-submit-button": function (event) {
+      // Prevent default browser form submit
+      event.preventDefault();
+console.log("LOL");
+      // Get values from form elements
+      var firstNameText = event.target.firstNameText.value;
+      var lastNameText = event.target.lastNameText.value;
+      console.log(firstNameText);
+      // Update current user firstname field
+      Meteor.users.update(
+        {_id:Meteor.userId()},
+        { $set: {
+          'profile.firstName':firstNameText
+          } 
+        }
+      );
+ 
+      // Clear form
+      event.target.firstNameText.value = "";
+      event.target.lastNameText.value = "";
+    }
+  });
+
+if(Meteor.isClient) {
 Template.basic.helpers({
   steps: function() {
     return [
@@ -89,13 +114,32 @@ Template.basic.helpers({
             });
           }
         });
+console.log(Orders.find());
+        var firstNameText = Orders.findOne(
+            { },
+            { firstname:1 }
+        ).firstname;
+        // Update current user firstname field
+        Meteor.users.update(
+          {_id:Meteor.userId()},
+          { $set: {
+            'profile.firstName':firstNameText
+            } 
+          }
+      );
+ 
+      // Clear form collection
+      Orders = new Meteor.Collection("orders");
       }
     }
     ];
   }
 });
+}
 
 Wizard.useRouter('iron:router');
+
+//This route is buggy...'next' button becomes disabled after 'back' click
 
 Router.route('/basic/:step?', {
   name: 'basic',

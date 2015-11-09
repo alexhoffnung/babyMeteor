@@ -14,7 +14,22 @@ if (Meteor.isClient) {
 	  },
 	  lastName: function() {
 	    return Meteor.user().profile.lastName;
-	  }
+	  },
+    streetAddress: function() {
+      return Meteor.user().profile.streetAddress;
+    },
+    city: function() {
+      return Meteor.user().profile.city;
+    },
+    state: function() {
+      return Meteor.user().profile.state;
+    },
+    paymentMethod: function() {
+      return Meteor.user().profile.paymentMethod;
+    },
+    terms: function() {
+      return Meteor.user().profile.terms;
+    }
 	});
 
 

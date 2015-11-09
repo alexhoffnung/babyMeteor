@@ -1,8 +1,8 @@
-<template name="dynamicFields">
+<template name="dynamicFields" id="dynamic">
   {{> wizard id="dynamic-fields" steps=steps stepsTemplate="steps_semanticUI" buttonClasses="ui button"}}
 </template>
 
-<template name="dynamicStep2">
+<template name="dynamicStep2" id="dynamic">
   {{#autoForm id="dynamic-step2-form" schema=step.schema}}
     
     {{#each dynamicFields}}

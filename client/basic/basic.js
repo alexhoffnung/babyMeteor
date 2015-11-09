@@ -1,21 +1,28 @@
 Orders = new Meteor.Collection('orders', {connection: null});
 
 Schemas.contactInformation = new SimpleSchema({
-  name:{
+  firstname:{
     type: String,
-    label: 'Name'
+    label: 'First name'
   },
-  address: {
+  lastname: {
     type: String,
-    label: 'Address'
-  },
-  zipcode: {
+    label: 'Last name'
+  }
+});
+
+Schemas.addressInformation = new SimpleSchema({
+  address:{
     type: String,
-    label: 'Zipcode'
+    label: 'Street Address'
   },
   city: {
     type: String,
     label: 'City'
+  },
+  state: {
+    type: String,
+    label: 'State'
   }
 });
 
@@ -50,16 +57,24 @@ Schemas.paymentInformation = new SimpleSchema({
 
 Orders.attachSchema([
   Schemas.contactInformation,
+  Schemas.addressInformation,
   Schemas.paymentInformation
 ]);
 
 Template.basic.helpers({
   steps: function() {
-    return [{
+    return [
+    {
       id: 'contact-information',
       title: 'Contact information',
       schema: Schemas.contactInformation
-    }, {
+    },
+    {
+      id: 'address-information',
+      title: 'Address information',
+      schema: Schemas.addressInformation
+    }, 
+    {
       id: 'payment-information',
       title: 'Payment & confirm',
       schema: Schemas.paymentInformation,
@@ -75,7 +90,8 @@ Template.basic.helpers({
           }
         });
       }
-    }];
+    }
+    ];
   }
 });
 
@@ -84,11 +100,18 @@ Wizard.useRouter('iron:router');
 Router.route('/basic/:step?', {
   name: 'basic',
   onBeforeAction: function() {
+    console.log(this.params.step);
     if (!this.params.step) {
       this.redirect('basic', {
         step: 'contact-information'
       });
-    } else {
+    } else if (!this.params.step) {
+      this.redirect('basic', {
+        step: 'address-information'
+      });
+    }
+    else
+    {
       this.next();
     }
   }

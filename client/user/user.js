@@ -3,29 +3,39 @@ if (Meteor.isClient) {
 	Meteor.subscribe("userData");
 
 	Template.user.helpers({
-	  firstName: function() {
+	  userId: function() {
 	    return Meteor.userId();
 	  },
+	  firstName: function() {
+	    return Meteor.user().profile.firstName;
+	  },
 	  lastName: function() {
-	    return Meteor.user().profile.surname;
+	    return Meteor.user().profile.lastName;
 	  }
 	});
 
 
 	Template.user.events({
-    "submit .update-user-surname": function (event) {
+    "submit .update-user-lastname": function (event) {
       // Prevent default browser form submit
       event.preventDefault();
 
-      // Get current user id
-      var currentUserId = Meteor.userId();
- 
       // Get value from form element
-   // var text = event.target.text.value;
       var lastNameText = event.target.lastNameText.value;
- console.log("over here" + lastNameText);
-      // Update current user surname field
-      Meteor.users.update({_id:Meteor.userId()}, { $set: {'profile.surname':lastNameText} });
+      // Update current user last name field
+      Meteor.users.update({_id:Meteor.userId()}, { $set: {'profile.lastName':lastNameText} });
+ 
+      // Clear form
+      event.target.lastNameText.value = "";
+    },
+    "submit .update-user-firstname": function (event) {
+      // Prevent default browser form submit
+      event.preventDefault();
+
+      // Get value from form element
+      var firstNameText = event.target.firstNameText.value;
+      // Update current user firstname field
+      Meteor.users.update({_id:Meteor.userId()}, { $set: {'profile.firstName':firstNameText} });
  
       // Clear form
       event.target.lastNameText.value = "";

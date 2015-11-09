@@ -7,7 +7,7 @@ if (Meteor.isServer) {
 	Meteor.publish("userData", function () {
   		if (this.userId) {
     		return Meteor.users.find({_id: this.userId},
-                             {fields: {surname: 1}});
+                             {fields: {firstName:1, lastName: 1}});
   		} 
   		else {
     		this.ready();
@@ -15,8 +15,9 @@ if (Meteor.isServer) {
 	});
 
   	Accounts.onCreateUser(function(options, user) {
-    	//pass the surname in the options
-		user.profile['surname'] = options.surname;
+    	//pass the custom fields in the options
+		user.profile['firstName'] = options.firstName;
+    user.profile['lastName'] = options.lastName;
 		return user;
 	});
 }

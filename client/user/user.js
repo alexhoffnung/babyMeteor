@@ -1,15 +1,13 @@
 if (Meteor.isClient) {
 	// This code only runs on the client
-	Meteor.subscribe("currentUserData");
+	Meteor.subscribe("userData");
 
 	Template.user.helpers({
 	  firstName: function() {
 	    return Meteor.userId();
 	  },
 	  lastName: function() {
-	  	var tempName = Meteor.users.find( { owner:Meteor.userId() } );
-	  	console.log(tempName);
-	    return Meteor.users.find( {_id:Meteor.userId() } ).profile.surname;
+	    return Meteor.user().profile.surname;
 	  }
 	});
 
@@ -28,9 +26,6 @@ if (Meteor.isClient) {
       // Insert a task into the collection
       Meteor.users.update({_id:Meteor.userId()}, { $set: {'profile.surname':text} });
       console.log(Meteor.users.find().fetch());
-console.log(text);
-var tempName = Meteor.users.find( { _id:Meteor.userId() } );
-console.log(tempName);
  
       // Clear form
       event.target.text.value = "";

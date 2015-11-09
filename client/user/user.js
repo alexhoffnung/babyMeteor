@@ -6,6 +6,9 @@ if (Meteor.isClient) {
 	  userId: function() {
 	    return Meteor.userId();
 	  },
+	  username: function() {
+	    return Meteor.user().username;
+	  },
 	  firstName: function() {
 	    return Meteor.user().profile.firstName;
 	  },
@@ -38,7 +41,7 @@ if (Meteor.isClient) {
       Meteor.users.update({_id:Meteor.userId()}, { $set: {'profile.firstName':firstNameText} });
  
       // Clear form
-      event.target.lastNameText.value = "";
+      event.target.firstNameText.value = "";
     }
   });
 }

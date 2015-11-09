@@ -16,8 +16,8 @@ if (Meteor.isServer) {
 
   	Accounts.onCreateUser(function(options, user) {
     	//pass the custom fields in the options
-		user.profile['firstName'] = options.firstName;
-    user.profile['lastName'] = options.lastName;
+		  user.profile['firstName'] = options.firstName;
+      user.profile['lastName'] = options.lastName;
 		return user;
 	});
 }

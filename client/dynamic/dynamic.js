@@ -1,4 +1,4 @@
-if (Meteor.isClient) {
+if(Meteor.isClient) {
   Schemas.dynamicStep1 = new SimpleSchema({
     fields: {
       type: String,
@@ -58,5 +58,18 @@ if (Meteor.isClient) {
       }
       return fields;
     }
+  });
+
+  Router.route('/dynamic', {
+  name: 'dynamic',
+  template: 'dynamicFields'
+  });
+
+  //Moved .useRouter and .startup from top of 
+  // file to here to get dynamic fields working
+  Wizard.useRouter('iron:router');
+
+  Meteor.startup(function () {
+      AutoForm.setDefaultTemplate("semanticUI");
   });
 }

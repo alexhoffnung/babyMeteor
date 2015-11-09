@@ -21,14 +21,14 @@ if (Meteor.isClient) {
       var currentUserId = Meteor.userId();
  
       // Get value from form element
-      var text = event.target.text.value;
- 
-      // Insert a task into the collection
-      Meteor.users.update({_id:Meteor.userId()}, { $set: {'profile.surname':text} });
-      console.log(Meteor.users.find().fetch());
+   // var text = event.target.text.value;
+      var lastNameText = event.target.lastNameText.value;
+ console.log("over here" + lastNameText);
+      // Update current user surname field
+      Meteor.users.update({_id:Meteor.userId()}, { $set: {'profile.surname':lastNameText} });
  
       // Clear form
-      event.target.text.value = "";
+      event.target.lastNameText.value = "";
     }
   });
 }

@@ -1,7 +1,30 @@
 <template name="user">
-  <form class="update-user-surname">
+ <!-- <form class="update-user-surname">
     <input type="text" name="text" placeholder="Type to add user surname to profile" />
-  </form>
+  </form> -->
 	<p>{{ firstName }}</p>
 	<p>{{ lastName }}</p>
+
+	<form class="update-user-surname">
+  <div class="form-group">
+    <label for="updateLastName">Last name</label>
+    <input type="text" name="lastNameText" class="form-control" id="updateLastName" placeholder="Last name">
+  </div>
+ <!--
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div> -->
+
+<!--  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div> -->
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
 </template>

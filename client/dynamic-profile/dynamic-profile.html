@@ -1,0 +1,20 @@
+<template name="dynamicProfileFields" id="dynamic-profile">
+  {{> wizard id="dynamic-profile-fields" steps=steps stepsTemplate="steps_semanticUI" buttonClasses="ui button"}}
+</template>
+
+<template name="dynamicProfileStep2" id="dynamic-profile">
+  {{#autoForm id="dynamic-profile-step2-form" schema=step.schema}}
+    
+    {{#each dynamicProfileFields}}
+      <div class="ui vertical segment">
+        <h3 class="ui header">Dynamic Profile fields {{index}}</h3>
+        {{> afQuickField name=name}}
+      </div>
+    {{/each}}
+    
+    <button type="button" class="wizard-back-button ui button">Back</button>
+    
+    <button type="submit" class="wizard-next-button ui button">Submit</button>
+
+  {{/autoForm}}
+</template>

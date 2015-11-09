@@ -1,0 +1,13 @@
+#basic h1 {
+  margin-bottom: 40px;
+}
+#basic .main.container {
+  width: 60%;
+  min-width: 500px;
+  margin: 0 auto;
+  padding: 50px;
+}
+
+#basic .ui.steps {
+  margin-bottom: 40px;
+}

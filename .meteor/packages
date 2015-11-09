@@ -22,3 +22,6 @@ accounts-password
 iron:router
 twbs:bootstrap
 autopublish
+msavin:mongol
+aldeed:autoform
+aldeed:collection2

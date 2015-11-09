@@ -2,8 +2,25 @@
  <!-- <form class="update-user-surname">
     <input type="text" name="text" placeholder="Type to add user surname to profile" />
   </form> -->
-	<p>{{ firstName }}</p>
-	<p>{{ lastName }}</p>
+
+  <section class="user-profile">
+	<div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">First Name</h3>
+      </div>
+      <div class="panel-body">
+        {{ firstName }}
+      </div>
+    </div>
+	<div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Last Name</h3>
+      </div>
+      <div class="panel-body">
+        {{ lastName }}
+      </div>
+    </div>
+  </section>
 
 	<form class="update-user-surname">
   <div class="form-group">

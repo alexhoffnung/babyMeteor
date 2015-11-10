@@ -115,15 +115,13 @@ Template.basic.helpers({
           }
         });
 console.log(Orders.find());
-        var firstNameText = Orders.findOne(
-            { },
-            { firstname:1 }
-        ).firstname;
+        var userProfileObject = Orders.findOne();
+
         // Update current user firstname field
         Meteor.users.update(
           {_id:Meteor.userId()},
           { $set: {
-            'profile.firstName':firstNameText
+            'profile.firstName':userProfileObject.firstname
             } 
           }
       );

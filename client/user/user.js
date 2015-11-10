@@ -34,6 +34,7 @@ if (Meteor.isClient) {
 
 
 	Template.user.events({
+    /*  
     "submit .update-user-lastname": function (event) {
       // Prevent default browser form submit
       event.preventDefault();
@@ -58,5 +59,6 @@ if (Meteor.isClient) {
       // Clear form
       event.target.firstNameText.value = "";
     }
+    */
   });
 }

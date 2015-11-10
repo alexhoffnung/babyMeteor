@@ -60,12 +60,12 @@ Orders.attachSchema([
   Schemas.addressInformation,
   Schemas.paymentInformation
 ]);
-
+/*
 Template.steps_semanticUI.events({
     "onSubmit .wizard-submit-button": function (event) {
       // Prevent default browser form submit
       event.preventDefault();
-console.log("LOL");
+
       // Get values from form elements
       var firstNameText = event.target.firstNameText.value;
       var lastNameText = event.target.lastNameText.value;
@@ -84,7 +84,7 @@ console.log("LOL");
       event.target.lastNameText.value = "";
     }
   });
-
+*/
 if(Meteor.isClient) {
 Template.basic.helpers({
   steps: function() {
@@ -121,7 +121,13 @@ console.log(Orders.find());
         Meteor.users.update(
           {_id:Meteor.userId()},
           { $set: {
-            'profile.firstName':userProfileObject.firstname
+            'profile.firstName':userProfileObject.firstname,
+            'profile.lastName':userProfileObject.lastname,
+            'profile.streetAddress':userProfileObject.address,
+            'profile.city':userProfileObject.city,
+            'profile.state':userProfileObject.state,
+            'profile.paymentMethod':userProfileObject.paymentMethod,
+            'profile.terms':userProfileObject.acceptTerms
             } 
           }
       );

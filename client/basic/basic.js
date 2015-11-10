@@ -109,7 +109,7 @@ Template.basic.helpers({
           if (err) {
             self.done();
           } else {
-            Router.go('profile', {
+            Router.go('viewOrder', {
               _id: id
             });
           }

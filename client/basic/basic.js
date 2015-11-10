@@ -109,7 +109,7 @@ Template.basic.helpers({
           if (err) {
             self.done();
           } else {
-            Router.go('viewOrder', {
+            Router.go('profile', {
               _id: id
             });
           }
@@ -131,6 +131,8 @@ console.log(Orders.find());
             } 
           }
       );
+
+      // Clear forms
  
       // Clear form collection
       Orders = new Meteor.Collection("orders");

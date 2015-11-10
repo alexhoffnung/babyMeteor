@@ -112,6 +112,7 @@ Template.basic.helpers({
             Router.go('viewOrder', {
               _id: id
             });
+            sAlert.success('Your message', configOverwrite);
           }
         });
 console.log(Orders.find());
@@ -130,12 +131,12 @@ console.log(Orders.find());
             'profile.terms':userProfileObject.acceptTerms
             } 
           }
-      );
+        );
 
-      // Clear forms
+        // Clear forms
  
-      // Clear form collection
-      Orders = new Meteor.Collection("orders");
+        // Clear form collection
+        Orders = new Meteor.Collection("orders");
       }
     }
     ];
@@ -145,7 +146,7 @@ console.log(Orders.find());
 
 Wizard.useRouter('iron:router');
 
-//This route is buggy...'next' button becomes disabled after 'back' click
+//This route is likely buggy...'next' button becomes disabled after 'back' click
 
 Router.route('/basic/:step?', {
   name: 'basic',

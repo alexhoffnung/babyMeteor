@@ -16,12 +16,34 @@ body {
   border-radius: 10px;
 }
 
+.big-button h1 {
+  font-size: 40pt;
+  padding: 20pt;
+}
+
+.big-button {
+  margin-left: 50px;
+}
+
+.icon {
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 25px;
+  margin-bottom: 20px;
+  display: block;
+  border-radius: 10px;
+  text-align: center;
+  height: 50px;
+  font-size: 40pt;
+}
+
 .icon-bar {
   color: black;
 }
 
 .navbar {
   align-content: center;
+  color: white;
 }
 
 .login, .login:visited {

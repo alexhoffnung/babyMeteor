@@ -1,9 +1,12 @@
 /* CSS declarations go here */
 
+section.admin-nav {
+  margin: 0 auto;
+}
 
 div.layout {
   font-family: sans-serif;
-  background-color: #315481;
+  background-color: #d3dfee;
   background-image: linear-gradient(to bottom, #315481, #918e82 100%);
   background-attachment: fixed;
   padding: 0;
@@ -12,7 +15,7 @@ div.layout {
 
 div.layout-user {
   font-family: sans-serif;
-  background-color: #315481;
+  background-color: #d3dfee;
   background-attachment: fixed;
   padding: 0;
   margin: 0;
@@ -28,6 +31,11 @@ div.layout-user {
 
 section.gotbaby-wall {
   padding-top: 50px;
+  background-color: rgba(179, 187, 250, 0.5);
+}
+
+section.button-boxes {
+  padding-bottom: 30px;
 }
 
 .big-button h1 {
@@ -35,8 +43,25 @@ section.gotbaby-wall {
   padding: 20pt;
 }
 
-.big-button {
-  margin-left: 50px;
+.big-button a.btn {
+  background-color: white;
+  border: 2pt #b3bbfa solid;
+  border-radius: 20px;
+  font-size: 3.5em;
+  font-weight: 100;
+  color: #b3bbfa;
+  margin-bottom: 10px;
+}
+
+.small-buttons button {
+  border-radius: 100%;
+  height: 50px;
+  width: 50px;
+  color: #b3bbfa;
+}
+
+button#down {
+  padding-left: 6px;
 }
 
 #navbar .icon {

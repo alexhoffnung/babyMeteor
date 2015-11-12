@@ -55,6 +55,7 @@ section.button-boxes {
 
 .small-buttons button {
   border-radius: 100%;
+  border: 1pt silver solid;
   height: 50px;
   width: 50px;
   color: #b3bbfa;
@@ -68,6 +69,7 @@ button#down {
   margin-left: auto;
   margin-right: auto;
   padding-top: 25px;
+  padding-bottom: 40px;
   margin-bottom: 20px;
   display: block;
   border-radius: 10px;

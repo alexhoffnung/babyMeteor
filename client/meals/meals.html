@@ -1,0 +1,24 @@
+<template name="meals">
+{{#if currentUser}}
+<div class="container">    
+  <h1>Meals List ({{incompleteCount}})</h1>
+ 
+  <label class="hide-completed">
+    <input type="checkbox" checked="{{hideCompleted}}" />
+    Hide some
+  </label>
+  
+  <form class="new-meal">
+    <input type="text" name="text" placeholder="Type to add new meals" />
+  </form>
+
+  <hr>
+
+  <ul>
+    {{#each meals}}
+      {{> meal}}
+    {{/each}}
+  </ul>
+</div>
+{{/if}}
+</template>

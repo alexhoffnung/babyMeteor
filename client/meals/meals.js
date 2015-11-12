@@ -23,7 +23,26 @@ if (Meteor.isClient) {
 
 
   Template.meals.events({
-
+    /*
+        "click .new-meal": function (event) {
+      // Prevent default browser form submit
+      event.preventDefault();
+console.log("hello");
+      // Get current user id
+      var currentUserId = Meteor.userId();
+ console.log(event.target);
+      // Get value from button element
+      var ounces = event.target.value;
+ 
+      // Insert a task into the collection
+      Meals.insert({
+        ounces: ounces,                 //# of ounces
+        createdAt: new Date(),          // current time
+        owner: currentUserId,           // _id of logged in user
+        createdBy: Meteor.user().username  // username of logged in user
+      });
+ 
+    },*/
       "submit .new-meal": function (event) {
       // Prevent default browser form submit
       event.preventDefault();

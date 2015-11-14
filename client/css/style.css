@@ -1,5 +1,9 @@
 /* CSS declarations go here */
 
+div.fc-time-grid-container {
+  min-height: 350px;
+}
+
 section.admin-nav {
   margin: 0 auto;
 }

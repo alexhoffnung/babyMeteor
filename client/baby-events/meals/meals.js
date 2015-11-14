@@ -40,6 +40,9 @@ if (Meteor.isClient) {
         owner: currentUserId,           // _id of logged in user
         createdBy: Meteor.user().username  // username of logged in user
       });
+    },
+    "change .hide-completed input": function (event) {
+      Session.set("hideCompleted", event.target.checked);
     }
   });
 }

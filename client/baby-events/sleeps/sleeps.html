@@ -1,0 +1,23 @@
+<template name="sleeps">
+{{#if currentUser}}
+<div class="container">    
+  <h1>Sleeps List ({{incompleteCount}})</h1>
+ 
+  <label class="hide-completed">
+    <input type="checkbox" checked="{{hideCompleted}}" />
+    Show today's sleep
+  </label>
+  
+  <form class="add-sleep">
+    <input type="text" name="text" placeholder="Type to add new sleep event" />
+  </form>
+  <hr>
+
+  <ul>
+    {{#each sleeps}}
+      {{> sleep}}
+    {{/each}}
+  </ul>
+</div>
+{{/if}}
+</template>

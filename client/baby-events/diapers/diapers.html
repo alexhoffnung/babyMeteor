@@ -1,0 +1,23 @@
+<template name="diapers">
+{{#if currentUser}}
+<div class="container">    
+  <h1>Diapers List ({{incompleteCount}})</h1>
+ 
+  <label class="hide-completed">
+    <input type="checkbox" checked="{{hideCompleted}}" />
+    Show today's diapers
+  </label>
+  
+  <form class="add-diaper">
+    <input type="text" name="text" placeholder="Type to add new diapers" />
+  </form>
+  <hr>
+
+  <ul>
+    {{#each diapers}}
+      {{> diaper}}
+    {{/each}}
+  </ul>
+</div>
+{{/if}}
+</template>

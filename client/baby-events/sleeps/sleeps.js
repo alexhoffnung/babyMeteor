@@ -29,7 +29,7 @@ if (Meteor.isClient) {
 
       // Get current user id
       var currentUserId = Meteor.userId();
- console.log("fefe");
+
       // Get value from form element and do nothing with it :)
       var direction = event.target.value;
  

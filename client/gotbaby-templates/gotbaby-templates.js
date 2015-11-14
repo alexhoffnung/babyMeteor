@@ -74,8 +74,12 @@ console.log("ppp");
       // Get current user id
       var currentUserId = Meteor.userId();
 
+      // Get value from button element
+      var direction = event.target.value;
+
       // Insert a task into the collection
       Sleeps.insert({
+        direction: direction,
         createdAt: new Date(),          // current time
         owner: currentUserId,           // _id of logged in user
         createdBy: Meteor.user().username  // username of logged in user

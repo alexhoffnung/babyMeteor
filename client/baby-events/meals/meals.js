@@ -23,7 +23,7 @@ if (Meteor.isClient) {
 
 
   Template.meals.events({
-        "click .add-meal": function (event) {
+      "submit .add-meal": function (event) {
       // Prevent default browser form submit
       event.preventDefault();
 
@@ -31,7 +31,7 @@ if (Meteor.isClient) {
       var currentUserId = Meteor.userId();
 
       // Get value from button element
-      var text = event.target.textMeal.value;
+      var text = event.target.text.value;
  
       // Insert a task into the collection
       Meals.insert({

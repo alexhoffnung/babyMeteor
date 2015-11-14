@@ -31,7 +31,7 @@ if (Meteor.isClient) {
       var currentUserId = Meteor.userId();
  
       // Get value from form element
-      var text = event.target.text.value;
+      var text = event.target.value;
  
       // Insert a task into the collection
       Diapers.insert({

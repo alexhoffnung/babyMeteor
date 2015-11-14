@@ -37,6 +37,7 @@ fastclick@1.0.7
 fortawesome:fontawesome@4.4.0
 forwarder:autoform-wizard@0.9.0
 forwarder:autoform-wizard-iron-router@0.1.4
+fourseven:scss@3.4.1
 geojson-utils@1.0.4
 hot-code-push@1.0.0
 html-tools@1.0.5
@@ -64,6 +65,7 @@ logging@1.0.8
 meteor@1.1.10
 meteor-base@1.0.1
 meteortoys:toykit@2.2.1
+mfpierre:chartist-js@1.6.1
 minifiers@1.1.7
 minimongo@1.0.10
 mobile-experience@1.0.1

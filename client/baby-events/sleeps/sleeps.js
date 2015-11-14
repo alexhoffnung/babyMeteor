@@ -1,7 +1,7 @@
 if (Meteor.isClient) {
   // This code only runs on the client
   Template.sleeps.helpers({
-    diapers: function () {
+    sleeps: function () {
       var currentUserId = Meteor.userId();
       if (Session.get("hideCompleted")) {
         // If hide completed is checked, filter tasks
@@ -29,13 +29,13 @@ if (Meteor.isClient) {
 
       // Get current user id
       var currentUserId = Meteor.userId();
- 
+ console.log("fefe");
       // Get value from form element and do nothing with it :)
-      var text = event.target.text.value;
+      var direction = event.target.value;
  
       // Insert a task into the collection
       Sleeps.insert({
-        time: time,
+        direction: direction,
         createdAt: new Date(),            // current time
         owner: currentUserId,           // _id of logged in user
         createdBy: Meteor.user().username  // username of logged in user

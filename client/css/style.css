@@ -43,6 +43,7 @@ section.gotbaby-wall {
   background-image: url("../images/texture.png");
   background-position-x: right;
   background-position-y: top;
+  background-size: cover;
 }
 
 section.button-boxes {
@@ -70,6 +71,10 @@ section.button-boxes {
   height: 50px;
   width: 50px;
   color: #b3bbfa;
+}
+
+button#down {
+  padding-left: 8px;
 }
 
 #navbar .icon {

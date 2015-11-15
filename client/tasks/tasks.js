@@ -1,5 +1,8 @@
 if (Meteor.isClient) {
   // This code only runs on the client
+
+  Meteor.subscribe("tasks");
+  
   Template.tasks.helpers({
     tasks: function () {
       var currentUserId = Meteor.userId();

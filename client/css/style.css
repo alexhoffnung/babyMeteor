@@ -44,6 +44,11 @@ section.gotbaby-wall {
   background-position-x: right;
   background-position-y: top;
   background-size: cover;
+  font-family: "Lucida Console", Courier, monospace; 
+}
+
+section.gotbaby-wall:hover {
+  background-image: url("../images/texture-clear.png");
 }
 
 section.button-boxes {
@@ -56,7 +61,7 @@ section.button-boxes {
 }
 
 .big-button a.btn {
-  background-color: white;
+  background-color: rgba(255,255,255,0.6);
   border: 2pt #b3bbfa solid;
   border-radius: 20px;
   font-size: 3.5em;
@@ -68,8 +73,8 @@ section.button-boxes {
 .small-buttons button {
   border-radius: 100%;
   border: 1pt silver solid;
-  height: 50px;
-  width: 50px;
+  height: 65px;
+  width: 65px;
   color: #b3bbfa;
 }
 
@@ -222,7 +227,15 @@ li {
   position: relative;
   list-style: none;
   padding: 15px;
-  border-bottom: #eee solid 1px;
+  border-bottom: #33ccff solid 1.5px;
+}
+
+ul.red-border {
+  border-left: #ff3300 solid 2.5px;
+}
+
+input.red-border {
+  border-right: #ff3300 solid 2.5px;
 }
 
 li .text {

@@ -21,7 +21,6 @@ if (Meteor.isClient) {
     }
   });
 
-
   Template.tasks.events({
     "submit .new-task": function (event) {
       // Prevent default browser form submit
@@ -34,12 +33,7 @@ if (Meteor.isClient) {
       var text = event.target.text.value;
  
       // Insert a task into the collection
-      Tasks.insert({
-        text: text,
-        createdAt: new Date(),            // current time
-        owner: currentUserId,           // _id of logged in user
-        createdBy: Meteor.user().username  // username of logged in user
-      });
+      Meteor.call("addTask", text);
  
       // Clear form
       event.target.text.value = "";

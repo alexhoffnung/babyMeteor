@@ -1,7 +1,3 @@
-  Accounts.ui.config({
-    passwordSignupFields: "USERNAME_ONLY"
-  });
-
 if(Meteor.isClient) {
 	Meteor.startup(function () {
 
@@ -29,4 +25,8 @@ if(Meteor.isClient) {
 	        // }
 	    });
 	});
+
+Accounts.ui.config({
+    passwordSignupFields: "USERNAME_ONLY"
+  });
 }

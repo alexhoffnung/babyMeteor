@@ -1,5 +1,8 @@
 if (Meteor.isClient) {
   // This code only runs on the client
+
+  Meteor.subscribe("meals");
+
   Template.meals.helpers({
     meals: function () {
       var currentUserId = Meteor.userId();
@@ -33,13 +36,11 @@ if (Meteor.isClient) {
       // Get value from button element
       var text = event.target.text.value;
  
-      // Insert a task into the collection
-      Meals.insert({
-        text: text,                 //# of ounces
-        createdAt: new Date(),          // current time
-        owner: currentUserId,           // _id of logged in user
-        createdBy: Meteor.user().username  // username of logged in user
-      });
+      // Insert a meal text into the collection
+      Meteor.call("addMeal", text, 0);
+
+      // Clear form
+      event.target.text.value = "";
     },
     "change .hide-completed input": function (event) {
       Session.set("hideCompleted", event.target.checked);

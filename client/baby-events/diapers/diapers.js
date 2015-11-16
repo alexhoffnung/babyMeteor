@@ -1,5 +1,8 @@
 if (Meteor.isClient) {
   // This code only runs on the client
+
+  Meteor.subscribe("diapers");
+
   Template.diapers.helpers({
     diapers: function () {
       var currentUserId = Meteor.userId();
@@ -33,14 +36,9 @@ if (Meteor.isClient) {
       // Get value from form element
       var text = event.target.value;
  
-      // Insert a task into the collection
-      Diapers.insert({
-        text: text,
-        createdAt: new Date(),            // current time
-        owner: currentUserId,           // _id of logged in user
-        createdBy: Meteor.user().username  // username of logged in user
-      });
- 
+      // Insert a diaper text into the collection
+      Meteor.call("addDiaper", text, "");
+
       // Clear form
       event.target.text.value = "";
     },

@@ -11,23 +11,19 @@ if (Meteor.isClient) {
       "click .new-meal": function (event) {
       // Prevent default browser form submit
       event.preventDefault();
-console.log("ppp");
+
       // Get current user id
       var currentUserId = Meteor.userId();
 
       // Get value from button element
       var ounces = event.target.value;
 
-      // Insert a task into the collection
-      Meals.insert({
-        ounces: ounces,                 //# of ounces
-        createdAt: new Date(),          // current time
-        owner: currentUserId,           // _id of logged in user
-        createdBy: Meteor.user().username  // username of logged in user
-      });
+      var text = "";
+
+      // Insert a meal into the collection
+      Meteor.call("addMeal", text, ounces);
     }
   });
-
 
 
   Template.gotbabyDiapers.helpers({
@@ -48,13 +44,10 @@ console.log("ppp");
       // Get value from button element
       var mess = event.target.value;
 
-      // Insert a task into the collection
-      Diapers.insert({
-        mess: mess,                 //type of mess
-        createdAt: new Date(),          // current time
-        owner: currentUserId,           // _id of logged in user
-        createdBy: Meteor.user().username  // username of logged in user
-      });
+       var text = "";
+
+      // Insert a meal into the collection
+      Meteor.call("addDiaper", text, mess);
     }
   });
 
@@ -77,13 +70,10 @@ console.log("ppp");
       // Get value from button element
       var direction = event.target.value;
 
-      // Insert a task into the collection
-      Sleeps.insert({
-        direction: direction,
-        createdAt: new Date(),          // current time
-        owner: currentUserId,           // _id of logged in user
-        createdBy: Meteor.user().username  // username of logged in user
-      });
+      var text = "";
+
+      // Insert a meal into the collection
+      Meteor.call("addSleep", text, direction);
     }
   });
 

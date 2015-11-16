@@ -1,5 +1,8 @@
 if (Meteor.isClient) {
   // This code only runs on the client
+
+  Meteor.subscribe("sleeps");
+
   Template.sleeps.helpers({
     sleeps: function () {
       var currentUserId = Meteor.userId();
@@ -30,17 +33,12 @@ if (Meteor.isClient) {
       // Get current user id
       var currentUserId = Meteor.userId();
 
-      // Get value from form element and do nothing with it :)
-      var direction = event.target.value;
- 
-      // Insert a task into the collection
-      Sleeps.insert({
-        direction: direction,
-        createdAt: new Date(),            // current time
-        owner: currentUserId,           // _id of logged in user
-        createdBy: Meteor.user().username  // username of logged in user
-      });
- 
+      // Get value from button element
+      var text = event.target.text.value;
+
+      // Insert a meal text into the collection
+      Meteor.call("addSleep", text, 0);
+
       // Clear form
       event.target.text.value = "";
     },

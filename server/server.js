@@ -167,6 +167,54 @@ if (Meteor.isServer) {
   });
 
 
+/*********************************
+*
+*    Sleep list methods
+*
+*********************************/
+
+  Meteor.methods({
+    addSleep: function (text, direction) {
+ console.log("ddsfdsf");
+    // Make sure the user is logged in before inserting a sleep
+    if (! Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    Sleeps.insert({
+      text: text,
+      direction: direction,
+      createdAt: new Date(),
+      owner: Meteor.userId(),
+      username: Meteor.user().username
+    });
+  },
+  deleteSleep: function (sleepId) {
+        console.log("dccxcxcxcx");
+    Sleeps.removed(sleepId);
+  },
+  setCheckedSleep: function (sleepId, setChecked) {
+      var sleep = Sleeps.findOne(sleepId);
+      if (sleep.private && sleep.owner !== Meteor.userId()) {
+        // If the sleep is private, make sure only the owner can check it off
+        throw new Meteor.Error("not-authorized");
+      }
+    Sleeps.update(sleepId, { $set: { checked: setChecked} });
+  },
+  setPrivateSleep: function (sleepId, setToPrivate) {
+      var sleep = Sleeps.findOne(sleepId);
+ 
+      // Make sure only the sleep owner can make a sleep private
+      if (sleep.owner !== Meteor.userId()) {
+        throw new Meteor.Error("not-authorized");
+      }
+ 
+      Sleeps.update(sleepId, { $set: { private: setToPrivate } });
+  }
+  });
+
+
+
 
 /*********************************
 *
@@ -196,6 +244,15 @@ if (Meteor.isServer) {
 
   Meteor.publish("diapers", function () {
     return Diapers.find({
+      $or: [
+        { private: {$ne: true} },
+        { owner: this.userId }
+      ]
+    });
+  });
+
+  Meteor.publish("sleeps", function () {
+    return Sleeps.find({
       $or: [
         { private: {$ne: true} },
         { owner: this.userId }

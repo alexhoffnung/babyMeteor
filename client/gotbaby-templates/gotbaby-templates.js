@@ -44,7 +44,7 @@ if (Meteor.isClient) {
       // Get value from button element
       var mess = event.target.value;
 
-       var text = "";
+      var text = "";
 
       // Insert a meal into the collection
       Meteor.call("addDiaper", text, mess);
@@ -63,7 +63,7 @@ if (Meteor.isClient) {
       "click .new-sleep": function (event) {
       // Prevent default browser form submit
       event.preventDefault();
-
+console.log("fdv");
       // Get current user id
       var currentUserId = Meteor.userId();
 

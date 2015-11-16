@@ -96,9 +96,15 @@ if (Meteor.isServer) {
       username: Meteor.user().username
     });
   },
-  deleteMeal: function (mealId) {
-    Meals.remove(mealId);
-  },
+    deleteMeal: function (mealId) {
+    var meal = Meals.findOne(mealId);
+    if (meal.private && meal.owner !== Meteor.userId()) {
+      // If the meal is private, make sure only the owner can delete it
+      throw new Meteor.Error("not-authorized");
+    }
+ 
+      Meals.remove(mealId);
+    },
   setCheckedMeal: function (mealId, setChecked) {
       var meal = Meals.findOne(mealId);
       if (meal.private && meal.owner !== Meteor.userId()) {
@@ -143,9 +149,15 @@ if (Meteor.isServer) {
       username: Meteor.user().username
     });
   },
-  deleteDiaper: function (diaperId) {
-    Diapers.removed(diaperId);
-  },
+    deleteDiaper: function (diaperId) {
+    var diaper = Diapers.findOne(diaperId);
+    if (diaper.private && diaper.owner !== Meteor.userId()) {
+      // If the diaper is private, make sure only the owner can delete it
+      throw new Meteor.Error("not-authorized");
+    }
+ 
+      Diapers.remove(diaperId);
+    },
   setCheckedDiaper: function (diaperId, setChecked) {
       var diaper = Diapers.findOne(diaperId);
       if (diaper.private && diaper.owner !== Meteor.userId()) {
@@ -189,10 +201,15 @@ if (Meteor.isServer) {
       username: Meteor.user().username
     });
   },
-  deleteSleep: function (sleepId) {
-        console.log("dccxcxcxcx");
-    Sleeps.removed(sleepId);
-  },
+    deleteSleep: function (sleepId) {
+    var sleep = Sleeps.findOne(sleepId);
+    if (sleep.private && sleep.owner !== Meteor.userId()) {
+      // If the sleep is private, make sure only the owner can delete it
+      throw new Meteor.Error("not-authorized");
+    }
+ 
+      Sleeps.remove(sleepId);
+    },
   setCheckedSleep: function (sleepId, setChecked) {
       var sleep = Sleeps.findOne(sleepId);
       if (sleep.private && sleep.owner !== Meteor.userId()) {

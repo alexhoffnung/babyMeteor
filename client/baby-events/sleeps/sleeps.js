@@ -34,7 +34,7 @@ if (Meteor.isClient) {
       var currentUserId = Meteor.userId();
 
       // Get value from button element
-      var text = event.target.text.value;
+      var text = event.target.value;
 
       // Insert a meal text into the collection
       Meteor.call("addSleep", text, 0);

@@ -2,7 +2,7 @@
   <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
     <button class="delete">&times;</button>
  
-    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+    <input type="checkbox" checked="{{checked}}" class="toggle-checked red-border" />
 
      {{#if isOwner}}
       <button class="toggle-private">
@@ -14,7 +14,9 @@
       </button>
     {{/if}}
 
-    <span class="text">{{ direction }} </span>
+    <span class="text"><strong>{{username}}</strong> - {{text}}</span>
+    
+    <span class="text">{{ direction }} diaper</span>
     <span class="text">{{ formatDate createdAt }}</span>
     <span class="text">{{ createdBy }}</span>
   </li>

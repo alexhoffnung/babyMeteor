@@ -62,7 +62,6 @@ section.button-boxes {
 }
 
 .big-button a.btn {
-  background-color: rgba(255,255,255,0.6);
   border: 2pt #b3bbfa solid;
   border-radius: 20px;
   font-size: 3.5em;
@@ -139,10 +138,12 @@ button#down {
 }
 
 .welcome-link {
+  background-color: rgba(255,255,255,0.8);
   border: 1pt white solid;
   border-radius: 10px; 
   align-self: center; 
   padding: 15px 0;
+/*  max-width: 250px; */
 }
 
 h5.welcome-link-title {

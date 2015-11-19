@@ -27,7 +27,6 @@ div.layout-user {
   background-attachment: fixed;
   padding: 0;
   margin: 0;
-  height: 100vh;
 }
 
 .wall {
@@ -45,7 +44,6 @@ section.gotbaby-wall {
   background-position-y: top;
   background-size: cover;
   font-family: "Lucida Console", Courier, monospace; 
-  height: 80vh;
 }
 
 section.gotbaby-wall:hover {
@@ -62,11 +60,12 @@ section.button-boxes {
 }
 
 .big-button a.btn {
-  border: 2pt #b3bbfa solid;
+  background-color: rgba(255,255,255,0.7);
+  border: 2pt #800080 solid;
   border-radius: 20px;
   font-size: 3.5em;
   font-weight: 100;
-  color: #b3bbfa;
+  color: #800080;
   margin-bottom: 10px;
 }
 
@@ -75,7 +74,7 @@ section.button-boxes {
   border: 1pt silver solid;
   height: 65px;
   width: 65px;
-  color: #b3bbfa;
+  color: #800080;
 }
 
 button#down {
@@ -109,15 +108,16 @@ button#down {
 }
 
 .login, .login:visited {
-  border: 1pt solid white;
+  border: 2pt #800080 solid;
   border-radius: 10px;
   padding: 10px;
   font-size: 2.0rem;
   color: white;
+  background-color: rgba(255,255,255,0.7);
 }
 
 #login-buttons a {
-  color: #C0C0C0;
+  color: #800080;
 }
 
 .brand {
@@ -139,16 +139,16 @@ button#down {
 
 .welcome-link {
   background-color: rgba(255,255,255,0.8);
-  border: 1pt white solid;
+  border: 2pt #800080 solid;
   border-radius: 10px; 
   align-self: center; 
   padding: 15px 0;
-/*  max-width: 250px; */
+  margin: 20px 0;
 }
 
 h5.welcome-link-title {
   font-size: 2.5rem;
-  color: white;
+  color: #800080;
 }
 
 .ui-buttons {
@@ -157,6 +157,12 @@ h5.welcome-link-title {
 
 .ui-button {
   margin: 5px 0;
+}
+
+@media (max-width: 300px) {
+  h5.welcome-link-title {
+    font-size: 1.7rem;
+  }
 }
 
 .glyphicon {

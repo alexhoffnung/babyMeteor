@@ -44,6 +44,7 @@ section.gotbaby-wall {
   background-position-y: top;
   background-size: cover;
   font-family: "Lucida Console", Courier, monospace; 
+  min-height: 550pt;
 }
 
 section.gotbaby-wall:hover {

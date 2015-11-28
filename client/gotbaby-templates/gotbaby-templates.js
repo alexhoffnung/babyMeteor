@@ -3,7 +3,13 @@ if (Meteor.isClient) {
   Template.gotbabyMeals.helpers({
     "incompleteCount": function () {
       var currentUserId = Meteor.userId();
-      return Meals.find( { $and: [ {checked: {$ne: true}}, { owner:currentUserId } ] } ).count();
+      return Meals.find( 
+        { $and: [ 
+          {checked: {$ne: true}}, 
+          { owner:currentUserId } 
+          ] 
+        } 
+      ).count();
     }
   });
 
@@ -63,7 +69,7 @@ if (Meteor.isClient) {
       "click .new-sleep": function (event) {
       // Prevent default browser form submit
       event.preventDefault();
-console.log("fdv");
+
       // Get current user id
       var currentUserId = Meteor.userId();
 

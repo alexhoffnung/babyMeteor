@@ -187,7 +187,7 @@ if (Meteor.isServer) {
 
   Meteor.methods({
     addSleep: function (text, direction) {
- console.log("ddsfdsf");
+
     // Make sure the user is logged in before inserting a sleep
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
@@ -277,4 +277,46 @@ if (Meteor.isServer) {
     });
   });
 
+  Meteor.publish("calendarEvent", function () {
+    return CalendarEvent.find({
+      $or: [
+        { private: {$ne: true} },
+        { owner: this.userId }
+      ]
+    });
+  });
+
 }
+
+
+
+
+/*********************************
+*
+*   Calendar events
+*
+*********************************/
+
+  Meteor.methods({
+    removeAllEvents: function() {
+      return CalendarEvent.remove({});
+    },
+
+    addEvent: function (startDate, title) {
+
+      // Make sure the user is logged in before inserting a sleep
+      if (! Meteor.userId()) {
+        throw new Meteor.Error("not-authorized");
+      }
+      console.log(startDate + title);
+      console.log(Meteor.user().username);
+      CalendarEvent.insert({
+        title: title,
+        startDate: startDate,
+        createdAt: new Date(),
+        owner: Meteor.userId(),
+        username: Meteor.user().username
+      });
+    }
+
+  });

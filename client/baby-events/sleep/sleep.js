@@ -12,7 +12,6 @@
       Meteor.call("setCheckedSleep", this._id, ! this.checked);
     },
     "click .delete": function () {
-      console.log("POOPP");
         Meteor.call("deleteSleep", this._id);
     },
     "click .toggle-private": function () {

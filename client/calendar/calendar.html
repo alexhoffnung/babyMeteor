@@ -1,5 +1,18 @@
 <template name="calendar">
 <section class="calendar">
-	{{> fullcalendar defaultView='agendaWeek'}}
+	{{> fullcalendar defaultView='agendaDay'}}
 </section>
+
+	<div id="calendar-page">
+		{{#each calEvent}}
+	  		<li>{{start}}.{{title}}</li>
+	  	{{/each}}
+
+	  	<span id="hello"></span><br>
+		Start Date:<input type="date" id="start-date" />
+		Title:<input type="text" id="title" />
+
+		<button id="addEvent">Add</button>
+		<button id="removeEvents">Remove All</button>
+	</div>
 </template>

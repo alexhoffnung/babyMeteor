@@ -1,5 +1,5 @@
 if (Meteor.isClient) {
-  Meteor.subscribe("CalendarEvent");
+  Meteor.subscribe("calendarEvent");
 
 	$('#calendar').fullCalendar({
 	    defaultView: 'agendaDay',

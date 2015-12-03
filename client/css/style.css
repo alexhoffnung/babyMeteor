@@ -286,3 +286,9 @@ header .hide-completed {
     padding-bottom: 5px;
   }
 }
+
+
+div.baby div.item {
+  width: 150px;
+  height: 200px;
+}

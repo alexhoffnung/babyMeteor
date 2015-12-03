@@ -1,20 +1,20 @@
-Template.meal.helpers({
+Template.baby.helpers({
   isOwner: function () {
     return this.owner === Meteor.userId();
   }
 });
 
 
-Template.meal.events({
+Template.baby.events({
   "click .toggle-checked": function () {
     // Set the checked property to the opposite of its current value
-    Meteor.call("setCheckedMeal", this._id, ! this.checked);
+    Meteor.call("setCheckedBaby", this._id, ! this.checked);
 
   },
   "click .delete": function () {
-      Meteor.call("deleteMeal", this._id);
+      Meteor.call("deleteBaby", this._id);
   },
   "click .toggle-private": function () {
-    Meteor.call("setPrivateMeal", this._id, ! this.private);
+    Meteor.call("setPrivateBaby", this._id, ! this.private);
   }
 });

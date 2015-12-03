@@ -286,6 +286,15 @@ if (Meteor.isServer) {
     });
   });
 
+  Meteor.publish("babies", function () {
+    return Babies.find({
+      $or: [
+        { private: {$ne: true} },
+        { owner: this.userId }
+      ]
+    });
+  });
+
 }
 
 
@@ -318,5 +327,52 @@ if (Meteor.isServer) {
         username: Meteor.user().username
       });
     }
+
+  });
+
+
+/*********************************
+*
+*   Baby events
+*
+*********************************/
+
+  Meteor.methods({
+    removeAllBabies: function() {
+      return Babies.remove({});
+    },
+
+    addBaby: function (babyName) {
+
+      // Make sure the user is logged in before inserting a sleep
+      if (! Meteor.userId()) {
+        throw new Meteor.Error("not-authorized");
+      }
+
+      Babies.insert({
+        babyName: babyName,
+        createdAt: new Date(),
+        owner: Meteor.userId(),
+        username: Meteor.user().username
+      });
+    },
+      setCheckedBaby: function (babyId, setChecked) {
+      var baby = Babies.findOne(babyId);
+      if (baby.private && baby.owner !== Meteor.userId()) {
+        // If the baby is private, make sure only the owner can check it off
+        throw new Meteor.Error("not-authorized");
+      }
+    Babies.update(babyId, { $set: { checked: setChecked} });
+  },
+  setPrivateBaby: function (babyId, setToPrivate) {
+      var baby = Babies.findOne(babyId);
+ 
+      // Make sure only the baby owner can make a baby private
+      if (baby.owner !== Meteor.userId()) {
+        throw new Meteor.Error("not-authorized");
+      }
+ 
+      Babies.update(babyId, { $set: { private: setToPrivate } });
+  }
 
   });

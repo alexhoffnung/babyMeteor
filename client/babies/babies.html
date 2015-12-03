@@ -1,0 +1,18 @@
+<template name="babies">
+{{#if currentUser}}
+<div class="container">    
+  <h1>Babies List</h1>
+  
+  <form class="add-baby">
+    <input type="text" name="text" placeholder="Type to add new baby" />
+  </form>
+  <hr>
+
+  <ul class="red-border">
+    {{#each babies}}
+      {{ > baby}}
+    {{/each}}
+  </ul>
+</div>
+{{/if}}
+</template>

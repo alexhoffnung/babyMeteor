@@ -355,6 +355,15 @@ if (Meteor.isServer) {
         owner: Meteor.userId(),
         username: Meteor.user().username
       });
+    },   
+    deleteBaby: function (babyId) {
+    var baby = Babies.findOne(babyId);
+    if (baby.private && baby.owner !== Meteor.userId()) {
+      // If the baby is private, make sure only the owner can delete it
+      throw new Meteor.Error("not-authorized");
+    }
+ 
+      Babies.remove(babyId);
     },
       setCheckedBaby: function (babyId, setChecked) {
       var baby = Babies.findOne(babyId);

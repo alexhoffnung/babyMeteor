@@ -14,6 +14,9 @@ Template.baby.events({
   "click .delete": function () {
       Meteor.call("deleteBaby", this._id);
   },
+    "click .activeBaby": function () {
+      Meteor.call("setActiveBaby", this._id, !this.activeBaby);
+  },
   "click .toggle-private": function () {
     Meteor.call("setPrivateBaby", this._id, ! this.private);
   }

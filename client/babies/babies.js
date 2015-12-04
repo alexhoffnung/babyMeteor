@@ -22,8 +22,10 @@ Template.babies.events({
     // Get value from button element
     var babyName = event.target.text.value;
 
+    var activeState = true;
+
     // Insert a meal text into the collection
-    Meteor.call("addBaby", babyName);
+    Meteor.call("addBaby", babyName, activeState);
 
     // Clear form
     event.target.text.value = "";

@@ -342,7 +342,7 @@ if (Meteor.isServer) {
       return Babies.remove({});
     },
 
-    addBaby: function (babyName) {
+    addBaby: function (babyName, activeState) {
 
       // Make sure the user is logged in before inserting a sleep
       if (! Meteor.userId()) {
@@ -351,6 +351,7 @@ if (Meteor.isServer) {
 
       Babies.insert({
         babyName: babyName,
+        activeState: activeState,
         createdAt: new Date(),
         owner: Meteor.userId(),
         username: Meteor.user().username
@@ -382,6 +383,16 @@ if (Meteor.isServer) {
       }
  
       Babies.update(babyId, { $set: { private: setToPrivate } });
+  },
+  setActiveBaby: function (babyId, setToActive) {
+      var baby = Babies.findOne(babyId);
+ 
+      // Make sure only the baby owner can make a baby private
+      if (baby.owner !== Meteor.userId()) {
+        throw new Meteor.Error("not-authorized");
+      }
+ 
+      Babies.update(babyId, { $set: { activeState: setToActive } });
   }
 
   });

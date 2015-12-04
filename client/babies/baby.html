@@ -2,6 +2,14 @@
   <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
 
     <button class="delete">&times;</button>
+
+    <button class="activeBaby">        
+      {{#if activeState }}
+          active
+      {{else}}
+          inactive
+      {{/if}}
+    </button>
  
     <input type="checkbox" checked="{{checked}}" class="toggle-checked red-border" />
 

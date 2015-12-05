@@ -2,6 +2,10 @@
 
 Meteor.subscribe("babies");
 
+Meteor.startup(function () {
+    Session.set("activeBaby","");
+});
+
 Template.babies.helpers({
   babies: function () {
     var currentUserId = Meteor.userId();
@@ -22,10 +26,10 @@ Template.babies.events({
     // Get value from button element
     var babyName = event.target.text.value;
 
-    var activeState = true;
-
+    Session.set("activeBaby",babyName);
+    console.log(Session.get("activeBaby"));
     // Insert a meal text into the collection
-    Meteor.call("addBaby", babyName, activeState);
+    Meteor.call("addBaby", babyName);
 
     // Clear form
     event.target.text.value = "";

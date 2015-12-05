@@ -15,6 +15,12 @@ Template.baby.events({
       Meteor.call("deleteBaby", this._id);
   },
     "click .activeBaby": function () {
+  /*    if(this.activeState === "inactive")
+      { */
+        activeBaby = this.babyName;
+    /*  } */
+      Session.set("activeBaby", activeBaby);
+      console.log(activeBaby);
       Meteor.call("setActiveBaby", this._id, !this.activeState);
   },
   "click .toggle-private": function () {

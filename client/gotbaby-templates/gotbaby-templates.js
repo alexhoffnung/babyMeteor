@@ -1,4 +1,5 @@
 if (Meteor.isClient) {
+
   // This code only runs on the client
   Template.gotbabyMeals.helpers({
     "incompleteCount": function () {
@@ -26,8 +27,10 @@ if (Meteor.isClient) {
 
       var text = "";
 
+      var babyName = Session.get("activeBaby");
+console.log(Session.get("activeBaby"));
       // Insert a meal into the collection
-      Meteor.call("addMeal", text, ounces);
+      Meteor.call("addMeal", text, ounces, babyName);
     }
   });
 

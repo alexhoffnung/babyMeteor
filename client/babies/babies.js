@@ -9,7 +9,7 @@ Meteor.startup(function () {
 Template.babies.helpers({
   babies: function () {
     var currentUserId = Meteor.userId();
-    console.log(Babies.find({owner: currentUserId}, {sort: {createdAt: -1}}));
+    
     return Babies.find({owner: currentUserId}, {sort: {createdAt: -1}});
   }
 });

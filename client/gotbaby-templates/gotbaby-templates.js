@@ -55,8 +55,10 @@ console.log(Session.get("activeBaby"));
 
       var text = "";
 
+      var babyName = Session.get("activeBaby");
+
       // Insert a meal into the collection
-      Meteor.call("addDiaper", text, mess);
+      Meteor.call("addDiaper", text, mess, babyName);
     }
   });
 
@@ -81,8 +83,10 @@ console.log(Session.get("activeBaby"));
 
       var text = "";
 
+      var babyName = Session.get("activeBaby");
+
       // Insert a meal into the collection
-      Meteor.call("addSleep", text, direction);
+      Meteor.call("addSleep", text, direction, babyName);
     }
   });
 

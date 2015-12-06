@@ -6,13 +6,14 @@ if (Meteor.isClient) {
   Template.sleeps.helpers({
     sleeps: function () {
       var currentUserId = Meteor.userId();
+      var activeBaby = Session.get("activeBaby");
       if (Session.get("hideCompleted")) {
         // If hide completed is checked, filter tasks
-        return Sleeps.find({ $and: [ {checked: {$ne: true}}, { owner:currentUserId } ] },  {sort: {createdAt: -1}});
+        return Sleeps.find({ $and: [ {checked: {$ne: true}}, { owner:currentUserId }, { babyName:activeBaby } ] },  {sort: {createdAt: -1}});
       } 
       else {
         // Otherwise, return all of the tasks
-        return Sleeps.find({owner: currentUserId}, {sort: {createdAt: -1}});
+        return Sleeps.find({ $and: [ { owner:currentUserId }, { babyName:activeBaby } ] }, {sort: {createdAt: -1}});
       }
     },
     hideCompleted: function () {
@@ -36,8 +37,10 @@ if (Meteor.isClient) {
       // Get value from button element
       var text = event.target.value;
 
+      var activeBaby = Session.get("activeBaby");
+
       // Insert a meal text into the collection
-      Meteor.call("addSleep", text, 0);
+      Meteor.call("addSleep", text, 0, activeBaby);
 
       // Clear form
       event.target.text.value = "";

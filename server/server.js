@@ -135,7 +135,7 @@ if (Meteor.isServer) {
 
   Meteor.methods({
 
-    addDiaper: function (text, mess) {
+    addDiaper: function (text, mess, activeBaby) {
 
     // Make sure the user is logged in before inserting a diaper
     if (! Meteor.userId()) {
@@ -145,6 +145,7 @@ if (Meteor.isServer) {
     Diapers.insert({
       text: text,
       mess: mess,
+      babyName: activeBaby,
       createdAt: new Date(),
       owner: Meteor.userId(),
       username: Meteor.user().username
@@ -187,7 +188,7 @@ if (Meteor.isServer) {
 *********************************/
 
   Meteor.methods({
-    addSleep: function (text, direction) {
+    addSleep: function (text, direction, activeBaby) {
 
     // Make sure the user is logged in before inserting a sleep
     if (! Meteor.userId()) {
@@ -197,6 +198,7 @@ if (Meteor.isServer) {
     Sleeps.insert({
       text: text,
       direction: direction,
+      babyName: activeBaby,
       createdAt: new Date(),
       owner: Meteor.userId(),
       username: Meteor.user().username

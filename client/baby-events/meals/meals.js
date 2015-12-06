@@ -5,14 +5,14 @@ Meteor.subscribe("meals");
 Template.meals.helpers({
   meals: function () {
     var currentUserId = Meteor.userId();
-
+    var activeBaby = Session.get("activeBaby");
     if (Session.get("hideCompleted")) {
       // If hide completed is checked, filter meals
-      return Meals.find({ $and: [ {checked: {$ne: true}}, { owner:currentUserId }] },  {sort: {createdAt: -1}});
+      return Meals.find({ $and: [ {checked: {$ne: true}}, { owner:currentUserId }, { babyName:activeBaby }] },  {sort: {createdAt: -1}});
     } 
     else {
       // Otherwise, return all of the meals
-      return Meals.find({ $and: [ { owner:currentUserId }] }, {sort: {createdAt: -1}});
+      return Meals.find({ $and: [ { owner:currentUserId }, { babyName:activeBaby }] }, {sort: {createdAt: -1}});
     }
   },
   hideCompleted: function () {

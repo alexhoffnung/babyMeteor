@@ -342,13 +342,13 @@ if (Meteor.isServer) {
     removeAllBabies: function() {
       return Babies.remove({});
     },
-
     addBaby: function (babyName) {
-
       // Make sure the user is logged in before inserting a sleep
       if (! Meteor.userId()) {
         throw new Meteor.Error("not-authorized");
       }
+
+      Babies.update({ activeState: true }, { $set: { activeState: false } });
 
       Babies.insert({
         babyName: babyName,
@@ -385,15 +385,16 @@ if (Meteor.isServer) {
  
       Babies.update(babyId, { $set: { private: setToPrivate } });
   },
-  setActiveBaby: function (babyId, setToActive) {
+  setActiveBaby: function (babyId, prevBabyId) {
       var baby = Babies.findOne(babyId);
+      var prevBaby = Babies.findOne(prevBabyId);
  
       // Make sure only the baby owner can make a baby private
       if (baby.owner !== Meteor.userId()) {
         throw new Meteor.Error("not-authorized");
       }
- 
-      Babies.update(babyId, { $set: { activeState: setToActive } });
+      Babies.update(prevBabyId, { $set: { activeState: false } });
+      Babies.update(babyId, { $set: { activeState: true } });
   }
 
   });

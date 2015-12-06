@@ -14,14 +14,22 @@ Template.baby.events({
   "click .delete": function () {
       Meteor.call("deleteBaby", this._id);
   },
-    "click .activeBaby": function () {
-  /*    if(this.activeState === "inactive")
-      { */
-        activeBaby = this.babyName;
-    /*  } */
-      Session.set("activeBaby", activeBaby);
-      console.log(activeBaby);
-      Meteor.call("setActiveBaby", this._id, !this.activeState);
+  "click .activeBaby": function () {
+      if(this.activeState === true)
+      {
+        console.log("spank hank");
+      }
+      else
+      {
+        var babyArray = Babies.find({activeState:true});
+        var prevBabyId = 0;
+        babyArray.forEach(function (baby) {
+          prevBabyId = baby._id;
+        });
+
+        Session.set("activeBaby", this.babyName);
+        Meteor.call("setActiveBaby", this._id, prevBabyId);
+      }
   },
   "click .toggle-private": function () {
     Meteor.call("setPrivateBaby", this._id, ! this.private);

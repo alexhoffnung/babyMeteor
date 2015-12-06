@@ -1,5 +1,10 @@
 /* CSS declarations go here */
 
+img#logo {
+  height: 80px;
+  padding-top: 25px;
+}
+
 div.fc-time-grid-container {
   min-height: 350px;
 }

@@ -31,3 +31,7 @@ momentjs:moment
 drblue:fullcalendar
 mfpierre:chartist-js
 particle4dev:cordova-fb
+raix:ui-dropped-event
+cfs:standard-packages
+cfs:gridfs
+cfs:s3

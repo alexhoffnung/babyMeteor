@@ -1,11 +1,32 @@
-Meteor.subscribe("images");
+Template.uploads.created = function() {
+  var self = this;
 
-Template.uploads.events({
-  'change .myFileInput': function(event, template) {
-    FS.Utility.eachFile(event, function(file) {
-      Images.insert(file, function (err, fileObj) {
-        // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
-      });
-    });
+  self.limit = new ReactiveVar;
+  self.limit.set(parseInt(Meteor.settings.public.recordsPerPage));
+  
+  Tracker.autorun(function() {
+    Meteor.subscribe('images', self.limit.get(), Router.current().params.userSlug);
+  });
+}
+
+Template.uploads.rendered = function() {
+  var self = this;
+  // is triggered every time we scroll
+  $(window).scroll(function() {
+    if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+      incrementLimit(self);
+    }
+  });
+}
+
+Template.uploads.helpers({
+  'images': function() {
+    return Images.find({}, {sort:{uploadedAt:-1}});
   }
 });
+
+var incrementLimit = function(templateInstance) {
+  var newLimit = templateInstance.limit.get() + 
+    parseInt(Meteor.settings.public.recordsPerPage);
+  templateInstance.limit.set(newLimit);
+}

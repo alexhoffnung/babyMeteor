@@ -51,6 +51,14 @@
     });
   });
 
+  Meteor.publish("caretakers", function () {
+    return Caretakers.find({
+      $or: [
+        { owner: this.userId }
+      ]
+    });
+  });
+
   Meteor.publish("babies", function () {
     return Babies.find({
       $or: [
@@ -59,3 +67,10 @@
       ]
     });
   });
+
+  Images.allow({
+  'insert': function () {
+    // add custom authentication code here
+    return true;
+  }
+});

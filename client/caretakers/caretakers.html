@@ -1,0 +1,20 @@
+<template name="caretakers">
+
+{{#if currentUser}}
+<div class="container">  
+  <h1>Caretakers List</h1>
+  <form class="add-caretaker">
+    <input type="text" name="text" placeholder="Type to add new caretaker" />
+  </form>
+  <hr>
+
+  <ul class="red-border">
+    {{#each caretakers}}
+      {{> caretaker}}
+    {{/each}}
+  </ul>
+
+</div>
+{{/if}}
+
+</template>

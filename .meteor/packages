@@ -38,3 +38,4 @@ cfs:s3
 sacha:spin
 chrismbeckett:toastr
 reactive-var
+cfs:filesystem

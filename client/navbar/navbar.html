@@ -1,15 +1,19 @@
 <template name="navbar">
-	<div class="container-fluid" id="navbar">
-	  <div class="row">
-	    <div class="col-xs-4">
-			<a href="/"><span class="glyphicon glyphicon-home icon" aria-hidden="true"></span></a>
-	    </div>
-	    <div class="col-xs-4">
-	    	<a href="/gotbaby"><img src="/images/gotbabySm.png" id="logo"></a>
-	    </div>
-	    <div class="col-xs-4">
-	    	<a href="/"><span class="glyphicon glyphicon-cog icon" aria-hidden="true"></span></a>
-	    </div>
-	  </div>
-	</div>
+
+<div class="container-fluid" id="navbar">
+
+{{ > loginButtons }}
+
+  <div class="row">
+    <div class="col-xs-4">
+		<a href="/"><span class="glyphicon glyphicon-home icon" aria-hidden="true"></span></a>
+    </div>
+    <div class="col-xs-4">
+    	<a href="/gotbaby"><img src="/images/gotbabySm.png" id="logo"></a>
+    </div>
+    <div class="col-xs-4">
+    	<a href="/"><span class="glyphicon glyphicon-cog icon" aria-hidden="true"></span></a>
+    </div>
+  </div>
+</div>
 </template>

@@ -13,18 +13,6 @@
  
     <input type="checkbox" checked="{{checked}}" class="toggle-checked red-border" />
 
-     {{#if isOwner}}
-      <button class="toggle-private">
-        {{#if private}}
-          Private
-        {{else}}
-          Public
-        {{/if}}
-      </button>
-    {{/if}}
- 
-    <span class="text">{{ babyName }}</span>
-
-    <a role="button" href="/caretakers" class="btn btn-info" id="shareBaby">Add Caretaker</a>
+    <a href="babyProfile" class="text">{{ babyName }}</a>
   </li>
 </template>

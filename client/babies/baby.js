@@ -30,8 +30,5 @@ Template.baby.events({
         Session.set("activeBaby", this.babyName);
         Meteor.call("setActiveBaby", this._id, prevBabyId);
       }
-  },
-  "click .toggle-private": function () {
-    Meteor.call("setPrivateBaby", this._id, ! this.private);
   }
 });

@@ -1,13 +1,13 @@
 <template name="caretaker">
-
+<li>
 {{#if currentUser}}
 <div class="container">    
 
-    <span class="text">{{ caretakerEmail }}</span>
-    <span class="text">{{ activeBaby }}</span>
     <button class="delete">&times;</button>
+    <span class="text">{{ caretakerEmail }} cares for baby</span>
+    <span class="text">{{ babyName }}</span>
   	
 </div>
 {{/if}}
-
+</li>
 </template>

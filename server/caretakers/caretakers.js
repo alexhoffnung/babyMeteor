@@ -5,7 +5,7 @@
 *********************************/
 
   Meteor.methods({
-    addCaretaker: function (caretakerEmail) {
+    addCaretaker: function (caretakerEmail, babyId, babyName) {
       // Make sure the user is logged in before inserting a sleep
       if (! Meteor.userId()) {
         throw new Meteor.Error("not-authorized");
@@ -13,6 +13,8 @@
 
       Caretakers.insert({
         caretakerEmail: caretakerEmail,
+        babyId: babyId,
+        babyName: babyName,
         createdAt: new Date(),
         owner: Meteor.userId(),
         username: Meteor.user().username

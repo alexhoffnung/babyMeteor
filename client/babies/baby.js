@@ -21,7 +21,8 @@ Template.baby.events({
       }
       else
       {
-        var babyArray = Babies.find({activeState:true});
+        var currentUserId = Meteor.userId();
+        var babyArray = Babies.find({$and:[{owner:currentUserId},{activeState:true}]});
         var prevBabyId = 0;
         babyArray.forEach(function (baby) {
           prevBabyId = baby._id;

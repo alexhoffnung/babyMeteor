@@ -1,5 +1,9 @@
 /* CSS declarations go here */
 
+div#babyCard button.edit {
+  right: 10px;
+}
+
 img#logo {
   height: 80px;
   padding-top: 25px;

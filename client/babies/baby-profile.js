@@ -33,7 +33,12 @@ if (Meteor.isClient) {
 Schemas.contactInformation = new SimpleSchema({
   firstname:{
     type: String,
-    label: 'First name'
+    label: 'First name',
+    autoform: {
+      afFieldInput: {
+        type: "contenteditable"
+      }
+    }
   },
   lastname: {
     type: String,

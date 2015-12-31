@@ -3,12 +3,12 @@ if (Meteor.isClient) {
 Template.charts.onRendered(function () {
     // Get current user id
     var currentUserId = Meteor.userId();
-    
+    var activeBaby = Session.get("activeBaby");
     var data = {
     labels: ['wet', 'dirty'],
     series: [
-        Diapers.find( { $and: [ {checked: {$ne: true}}, { owner:currentUserId } ] } ).count(),
-        Diapers.find( { $and: [ {checked: {$ne: false}}, { owner:currentUserId } ] } ).count()
+        Diapers.find( { $and: [ {mess:"wet"}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count(),
+        Diapers.find( { $and: [ {mess:"dirty"}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count()
     ]
     };
 

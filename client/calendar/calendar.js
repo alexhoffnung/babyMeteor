@@ -2,7 +2,7 @@ if (Meteor.isClient) {
   Meteor.subscribe("calendarEvent");
 
 	$('#calendar').fullCalendar({
-	    defaultView: 'agendaDay',
+	    defaultView: 'agendaWeek',
 	    events: [
 	        // events go here
 	    ],

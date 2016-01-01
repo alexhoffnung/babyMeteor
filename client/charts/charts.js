@@ -1,24 +1,39 @@
-if (Meteor.isClient) {
-  // This code only runs on the client
+Template.charts.helpers({
+    averageOunces: function () {
+      var currentUserId = Meteor.userId();
+      var activeBaby = Session.get("activeBaby");
+      var today = new Date();
+      console.log(today);
+      var twoOz = Meals.find( 
+        { $and: [ 
+          { ounces:"2" }, 
+          { babyName:activeBaby }, 
+          { owner:currentUserId } ] 
+        } 
+      ).count();
+      return twoOz;
+  }
+});
+
 Template.charts.onRendered(function () {
     // Get current user id
     var currentUserId = Meteor.userId();
     var activeBaby = Session.get("activeBaby");
     var diaperData = {
     labels: ['wet', 'dirty'],
-    series: [
+    series: [[
         Diapers.find( { $and: [ {mess:"wet"}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count(),
         Diapers.find( { $and: [ {mess:"dirty"}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count()
-    ]
+    ]]
     };
     var mealData = {
     labels: ['2oz', '4oz','6oz'],
-    series: [
+    series: [[
         Meals.find( { $and: [ {ounces:"2"}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count(),
         Meals.find( { $and: [ {ounces:"4"}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count(),
         Meals.find( { $and: [ {ounces:"6"}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count()
 
-    ]
+    ]]
     };
     var sleepData = {
     labels: ['down', 'up'],
@@ -43,15 +58,13 @@ Template.charts.onRendered(function () {
         }
       }],
       ['screen and (min-width: 1024px)', {
-        labelOffset: 80,
+        labelOffset: 20,
         chartPadding: 20
       }]
     ];
 
-    new Chartist.Pie('#diaper-chart', diaperData, options, responsiveOptions);
-    new Chartist.Pie('#meal-chart', mealData, options, responsiveOptions);
+    new Chartist.Bar('#diaper-chart', diaperData, options, responsiveOptions);
+    new Chartist.Bar('#meal-chart', mealData, options, responsiveOptions);
     new Chartist.Pie('#sleep-chart', sleepData, options, responsiveOptions);
 
-    });
-
-}
+});

@@ -17,6 +17,7 @@
       direction: direction,
       babyName: activeBaby,
       createdAt: new Date(),
+      createdAtStart: moment().startOf('day').toDate(),
       owner: Meteor.userId(),
       username: Meteor.user().username
     });

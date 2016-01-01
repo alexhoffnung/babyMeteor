@@ -11,7 +11,21 @@ Template.charts.helpers({
           { owner:currentUserId } ] 
         } 
       ).count();
-      return twoOz;
+      var fourOz = Meals.find( 
+        { $and: [ 
+          { ounces:"4" }, 
+          { babyName:activeBaby }, 
+          { owner:currentUserId } ] 
+        } 
+      ).count();
+      var sixOz = Meals.find( 
+        { $and: [ 
+          { ounces:"6" }, 
+          { babyName:activeBaby }, 
+          { owner:currentUserId } ] 
+        } 
+      ).count();
+      return (2*Number(twoOz) + 4*Number(fourOz) + 6*Number(sixOz))/(Number(twoOz) + Number(fourOz) + Number(sixOz));
   }
 });
 

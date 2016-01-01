@@ -20,7 +20,10 @@ Template.meals.helpers({
   },
   incompleteCount: function () {
     var currentUserId = Meteor.userId();
-    return Meals.find( { $and: [ {checked: {$ne: true}}, { owner:currentUserId } ] } ).count();
+    var activeBaby = Session.get("activeBaby");
+    var today = new Date();
+    console.log(today);
+    return Meals.find( { $and: [ {checked: {$ne: true}}, { babyName:activeBaby }, { owner:currentUserId } ] } ).count();
   }
 });
 

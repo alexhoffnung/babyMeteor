@@ -4,10 +4,15 @@ if (Meteor.isClient) {
   Template.gotbabyMeals.helpers({
     "incompleteCount": function () {
       var currentUserId = Meteor.userId();
+      var activeBaby = Session.get("activeBaby");
+      var today = moment().add(-1,'days')
+      console.log(today._d)
+      console.log(activeBaby)
       return Meals.find( 
         { $and: [ 
-          {checked: {$ne: true}}, 
-          { owner:currentUserId } 
+          {createdAt: {$gte: today._d}},
+          {babyName:activeBaby},
+          {owner:currentUserId}
           ] 
         } 
       ).count();
@@ -38,7 +43,18 @@ console.log(Session.get("activeBaby"));
   Template.gotbabyDiapers.helpers({
     "incompleteCount": function () {
       var currentUserId = Meteor.userId();
-      return Diapers.find( { $and: [ {checked: {$ne: true}}, { owner:currentUserId } ] } ).count();
+      var activeBaby = Session.get("activeBaby");
+      var today = moment().add(-1,'days')
+      console.log(today._d)
+      console.log(activeBaby)
+      return Diapers.find(        
+        { $and: [ 
+          {createdAt: {$gte: today._d}},
+          {babyName:activeBaby},
+          {owner:currentUserId}
+          ] 
+        } 
+      ).count();
     }
   });
 
@@ -66,7 +82,18 @@ console.log(Session.get("activeBaby"));
   Template.gotbabySleeps.helpers({
     "incompleteCount": function () {
       var currentUserId = Meteor.userId();
-      return Sleeps.find( { $and: [ {checked: {$ne: true}}, { owner:currentUserId } ] } ).count();
+      var activeBaby = Session.get("activeBaby");
+      var today = moment().add(-1,'days')
+      console.log(today._d)
+      console.log(activeBaby)
+      return Sleeps.find(
+        { $and: [ 
+          {createdAt: {$gte: today._d}},
+          {babyName:activeBaby},
+          {owner:currentUserId}
+          ] 
+        } 
+      ).count();
     }
   });
 

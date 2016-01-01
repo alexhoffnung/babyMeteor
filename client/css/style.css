@@ -5,6 +5,10 @@ div.stats {
   margin: 50px;
 }
 
+.ct-label {
+  font-size: 1.3rem;
+}
+
 div#babyCard button.edit {
   right: 10px;
 }

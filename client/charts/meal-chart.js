@@ -22,6 +22,6 @@ Template.mealChart.helpers ({
     var daySixCount = Meals.find({ $and: [ {createdAtStart:mealWeek[5]._d}, { owner:currentUserId }, { babyName:activeBaby }] }).count();
     var daySevenCount = Meals.find({ $and: [ {createdAtStart:mealWeek[6]._d}, { owner:currentUserId }, { babyName:activeBaby }] }).count();
     console.log(daySevenCount)
-  return (dayOneCount + dayTwoCount + dayThreeCount + dayFourCount + dayFiveCount + daySixCount + daySevenCount)/7;
+  return ((dayOneCount + dayTwoCount + dayThreeCount + dayFourCount + dayFiveCount + daySixCount + daySevenCount)/7).toFixed(0);;
   }
 });

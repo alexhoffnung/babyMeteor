@@ -25,9 +25,9 @@ Template.charts.helpers({
           { owner:currentUserId } ] 
         } 
       ).count();
-      return (2*Number(twoOz) + 4*Number(fourOz) + 6*Number(sixOz))/(Number(twoOz) + Number(fourOz) + Number(sixOz));
+      return ((2*Number(twoOz) + 4*Number(fourOz) + 6*Number(sixOz))/(Number(twoOz) + Number(fourOz) + Number(sixOz))).toFixed(0);;
   },
-  
+
 });
 
 Template.charts.onRendered(function () {

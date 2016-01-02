@@ -3,7 +3,9 @@
 Meteor.subscribe("babies");
 
 Meteor.startup(function () {
-    Session.set("activeBaby","");
+    var currentUserId = Meteor.userId();
+    var baby = Babies.findOne({owner:currentUserId});
+    Session.set("activeBaby",baby.babyName);
 });
 
 Template.babies.helpers({

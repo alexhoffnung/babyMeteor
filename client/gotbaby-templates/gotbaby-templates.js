@@ -5,7 +5,7 @@ if (Meteor.isClient) {
     "incompleteCount": function () {
       var currentUserId = Meteor.userId();
       var activeBaby = Session.get("activeBaby");
-      var today = moment().add(-1,'days')
+      var today = moment().add(-1,'days');
       console.log(today._d)
       console.log(activeBaby)
       return Meals.find( 

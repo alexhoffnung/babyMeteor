@@ -26,7 +26,8 @@ Template.charts.helpers({
         } 
       ).count();
       return (2*Number(twoOz) + 4*Number(fourOz) + 6*Number(sixOz))/(Number(twoOz) + Number(fourOz) + Number(sixOz));
-  }
+  },
+  
 });
 
 Template.charts.onRendered(function () {

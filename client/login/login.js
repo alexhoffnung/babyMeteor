@@ -8,12 +8,12 @@ Template.login.events({
 				$('#errorMessage').text(error.reason);
 			} 
 			if (Meteor.userId) {
-		        Router.go('welcome');
+		        Router.go('/');
 		    }
 		});
 	},
 
-	'click #registerButton' : function(event){
+	'click #signUpButton' : function(event){
 		event.preventDefault();
 		let email = $('#inputEmail').val();
 		let password = $('#inputPassword').val();
@@ -29,7 +29,7 @@ Template.login.events({
 	            	$('#errorMessage').text(error.reason);
 	        	}
 	        	if (Meteor.userId) {
-		        	Router.go('welcome');
+		        	Router.go('/');
 		    	}
 	        });
 		}

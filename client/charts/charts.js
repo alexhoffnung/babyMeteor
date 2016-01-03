@@ -71,13 +71,35 @@ Template.charts.onRendered(function () {
     var daySixOunceSix = Meals.find({ $and: [ {ounces:"6"}, {createdAtStart:mealWeek[5]._d}, { owner:currentUserId }, { babyName:activeBaby }] }).count();
     var daySevenOunceSix = Meals.find({ $and: [ {ounces:"6"}, {createdAtStart:mealWeek[6]._d}, { owner:currentUserId }, { babyName:activeBaby }] }).count();
 
+    var dayOneWet = Diapers.find( { $and: [ {mess:"wet"}, {createdAtStart:mealWeek[0]._d}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count();
+    var dayTwoWet = Diapers.find( { $and: [ {mess:"wet"}, {createdAtStart:mealWeek[1]._d}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count();
+    var dayThreeWet = Diapers.find( { $and: [ {mess:"wet"}, {createdAtStart:mealWeek[2]._d}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count();
+    var dayFourWet = Diapers.find( { $and: [ {mess:"wet"}, {createdAtStart:mealWeek[3]._d}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count();
+    var dayFiveWet = Diapers.find( { $and: [ {mess:"wet"}, {createdAtStart:mealWeek[4]._d}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count();
+    var daySixWet = Diapers.find( { $and: [ {mess:"wet"}, {createdAtStart:mealWeek[5]._d}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count();
+    var daySevenWet = Diapers.find( { $and: [ {mess:"wet"}, {createdAtStart:mealWeek[6]._d}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count();
 
+    var dayOneDirty = Diapers.find( { $and: [ {mess:"dirty"}, {createdAtStart:mealWeek[0]._d}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count();
+    var dayTwoDirty = Diapers.find( { $and: [ {mess:"dirty"}, {createdAtStart:mealWeek[1]._d}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count();
+    var dayThreeDirty = Diapers.find( { $and: [ {mess:"dirty"}, {createdAtStart:mealWeek[2]._d}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count();
+    var dayFourDirty = Diapers.find( { $and: [ {mess:"dirty"}, {createdAtStart:mealWeek[3]._d}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count();
+    var dayFiveDirty = Diapers.find( { $and: [ {mess:"dirty"}, {createdAtStart:mealWeek[4]._d}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count();
+    var daySixDirty = Diapers.find( { $and: [ {mess:"dirty"}, {createdAtStart:mealWeek[5]._d}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count();
+    var daySevenDirty = Diapers.find( { $and: [ {mess:"dirty"}, {createdAtStart:mealWeek[6]._d}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count();    
 
     var diaperData = {
-    labels: ['wet', 'dirty'],
+    labels: [
+      mealWeek[0].format('ddd'),
+      mealWeek[1].format('ddd'),
+      mealWeek[2].format('ddd'),
+      mealWeek[3].format('ddd'),
+      mealWeek[4].format('ddd'),
+      mealWeek[5].format('ddd'),
+      mealWeek[6].format('ddd')
+    ],
     series: [[
-        Diapers.find( { $and: [ {mess:"wet"}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count(),
-        Diapers.find( { $and: [ {mess:"dirty"}, {babyName: activeBaby}, { owner:currentUserId } ] } ).count()
+        [dayOneWet,dayTwoWet,dayThreeWet,dayFourWet,dayFiveWet,daySixWet,daySevenWet],
+        [dayOneDirty,dayTwoDirty,dayThreeDirty,dayFourDirty,dayFiveDirty,daySixDirty,daySevenDirty]
     ]]
     };
     var mealData = {

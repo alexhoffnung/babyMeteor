@@ -129,8 +129,10 @@ console.log(Session.get("activeBaby"));
 
       var babyName = Session.get("activeBaby");
 
+      var currentNap = Sleeps.findOne({ $and:[{owner:currentUserId}, {babyName:babyName}, {currentNap:true} ]});
+
       // Insert a meal into the collection
-      Meteor.call("addSleep", text, direction, babyName);
+      Meteor.call("endSleep", currentNap._id, currentNap.createdAt);
     }
   });
 

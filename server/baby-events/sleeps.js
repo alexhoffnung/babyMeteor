@@ -12,8 +12,6 @@
       throw new Meteor.Error("not-authorized");
     }
 
-    Sleeps.update({ currentNap: true }, { $set: { currentNap: false } });
-
     Sleeps.insert({
       text: text,
       direction: direction,
@@ -21,9 +19,23 @@
       currentNap: true,
       createdAt: new Date(),
       createdAtStart: moment().startOf('day').toDate(),
+      endSleep: new Date(),
+      napLength: new Date(),
       owner: Meteor.userId(),
       username: Meteor.user().username
     });
+  },
+  endSleep: function (currentNapId, currentNapStartTime) {
+
+    // Make sure the user is logged in before inserting a sleep
+    if (! Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    var endTime = new Date();
+    var napLength = moment(currentNapStartTime).fromNow();
+
+    Sleeps.update({ _id: currentNapId }, { $set: { currentNap: false, endSleep:endTime, napLength:napLength} });
   },
     deleteSleep: function (sleepId) {
     var sleep = Sleeps.findOne(sleepId);

@@ -12,10 +12,13 @@
       throw new Meteor.Error("not-authorized");
     }
 
+    Sleeps.update({ currentNap: true }, { $set: { currentNap: false } });
+
     Sleeps.insert({
       text: text,
       direction: direction,
       babyName: activeBaby,
+      currentNap: true,
       createdAt: new Date(),
       createdAtStart: moment().startOf('day').toDate(),
       owner: Meteor.userId(),

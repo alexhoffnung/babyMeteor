@@ -80,25 +80,42 @@ console.log(Session.get("activeBaby"));
 
 
   Template.gotbabySleeps.helpers({
-    "incompleteCount": function () {
+    "sleepTime": function () {
       var currentUserId = Meteor.userId();
       var activeBaby = Session.get("activeBaby");
-      var today = moment().add(-1,'days')
-      console.log(today._d)
-      console.log(activeBaby)
-      return Sleeps.find(
+
+      var currentNap = Sleeps.findOne(
         { $and: [ 
-          {createdAt: {$gte: today._d}},
+          {currentNap:true},
           {babyName:activeBaby},
           {owner:currentUserId}
           ] 
         } 
-      ).count();
+      );
+
+      return moment(currentNap.createdAt).fromNow();
     }
   });
 
   Template.gotbabySleeps.events({
       "click .new-sleep": function (event) {
+      // Prevent default browser form submit
+      event.preventDefault();
+
+      // Get current user id
+      var currentUserId = Meteor.userId();
+
+      // Get value from button element
+      var direction = event.target.value;
+
+      var text = "";
+
+      var babyName = Session.get("activeBaby");
+
+      // Insert a meal into the collection
+      Meteor.call("addSleep", text, direction, babyName);
+    },
+    "click .new-awake": function (event) {
       // Prevent default browser form submit
       event.preventDefault();
 

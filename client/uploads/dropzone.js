@@ -6,8 +6,9 @@ Template.dropzone.events({
       var newFile = new FS.File(file);
       newFile.username = user.username;
       newFile.userId = user._id;
+      console.log(user.username)
       newFile.userSlug = Slug.slugify(user.username);
-      
+      console.log("out")
       Images.insert(newFile, function (error, fileObj) {
         if (error) {
     		  toastr.error("Upload failed... please try again.");

@@ -23,7 +23,8 @@ Template.login.events({
 		else{
 			Accounts.createUser({
 	            email: email,
-	            password: password
+	            password: password,
+	            username: email //temp needed for photo upload
 	        }, function(error){
 	        	if (error) {
 	            	$('#errorMessage').text(error.reason);

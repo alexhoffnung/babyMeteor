@@ -1,6 +1,3 @@
-if (Meteor.isClient) {
-
-  // This code only runs on the client
   Template.gotbabyMeals.helpers({
     "incompleteCount": function () {
       var currentUserId = Meteor.userId();
@@ -135,6 +132,3 @@ console.log(Session.get("activeBaby"));
       Meteor.call("endSleep", currentNap._id, currentNap.createdAt);
     }
   });
-
-
-}

@@ -2,12 +2,15 @@
 {{#if currentUser}}
 <div class="container">    
   <h1>Babies List</h1>
-  
+
+ 
   <form class="add-baby">
     <input type="text" name="text" placeholder="Type to add new baby" />
   </form>
 
   <hr>
+  {{>addBaby}}
+
   <a role="button" href="/caretakers" class="btn btn-info" id="shareBaby">Add Caretaker</a>
   <hr>
 

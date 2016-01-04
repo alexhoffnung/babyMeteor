@@ -5,7 +5,8 @@ Meteor.subscribe("babies");
 Meteor.startup(function () {
     var currentUserId = Meteor.userId();
     var baby = Babies.findOne({owner:currentUserId});
-    Session.set("activeBaby",baby.babyName);
+ //   Session.set("activeBaby",baby.babyName);
+
 });
 
 Template.babies.helpers({

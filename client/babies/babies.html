@@ -4,17 +4,18 @@
   <h1>Babies List</h1>
 
   <hr>
-  {{>addBaby}}
-
-  <a role="button" href="/caretakers" class="btn btn-info" id="shareBaby">Add Caretaker</a>
-  <hr>
-
 
   <div class="container">
 
     {{>babyCard}}
 
   </div>
+
+  <hr>
+
+    {{>addBaby}}
+
+  <hr>
 
   <ul class="red-border">
     {{#each babies}}

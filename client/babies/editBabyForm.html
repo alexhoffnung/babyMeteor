@@ -1,0 +1,11 @@
+<template name="editBabyForm">
+    {{#autoForm collection="Babies" doc=activeBabyDoc id="updateBabyForm" type="update"}}
+    <fieldset>
+      {{> afQuickField name='babyName'}}
+      {{> afQuickField name='dob'}}
+      {{> afQuickField name='gender'}}
+      {{> afQuickField name='allergies' rows=4}}
+    </fieldset>
+    <button type="submit" class="btn btn-primary edit-baby">Submit</button>
+  {{/autoForm}}
+</template>

@@ -94,7 +94,7 @@ console.log(Session.get("activeBaby"));
         return moment(currentNap.createdAt).fromNow();
       }
       else {
-        return moment().toDate();
+        return "awake";
       }
     }
   });

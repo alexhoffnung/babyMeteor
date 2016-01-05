@@ -114,26 +114,13 @@ console.log(Session.get("activeBaby"));
 
       var babyName = Session.get("activeBaby");
 
-      // Insert a meal into the collection
-      Meteor.call("addSleep", text, direction, babyName);
-    },
-    "click .new-awake": function (event) {
-      // Prevent default browser form submit
-      event.preventDefault();
-
-      // Get current user id
-      var currentUserId = Meteor.userId();
-
-      // Get value from button element
-      var direction = event.target.value;
-
-      var text = "";
-
-      var babyName = Session.get("activeBaby");
-
       var currentNap = Sleeps.findOne({ $and:[{owner:currentUserId}, {babyName:babyName}, {currentNap:true} ]});
 
-      // Insert a meal into the collection
-      Meteor.call("endSleep", currentNap._id, currentNap.createdAt);
+      if(!currentNap) {
+        Meteor.call("addSleep", text, direction, babyName);
+      }
+      else {
+        Meteor.call("endSleep", currentNap._id, currentNap.createdAt);
+      }
     }
   });

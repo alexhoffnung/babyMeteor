@@ -97,10 +97,10 @@ Template.charts.onRendered(function () {
       mealWeek[5].format('ddd'),
       mealWeek[6].format('ddd')
     ],
-    series: [[
+    series: [
         [dayOneWet,dayTwoWet,dayThreeWet,dayFourWet,dayFiveWet,daySixWet,daySevenWet],
         [dayOneDirty,dayTwoDirty,dayThreeDirty,dayFourDirty,dayFiveDirty,daySixDirty,daySevenDirty]
-    ]]
+    ]
     };
     var mealData = {
     labels: [
@@ -119,8 +119,7 @@ Template.charts.onRendered(function () {
         (2 * dayFourOunceTwo) + (4 * dayFourOunceFour) + (6 * dayFourOunceSix),
         (2 * dayFiveOunceTwo) + (4 * dayFiveOunceFour) + (6 * dayFiveOunceSix),
         (2 * daySixOunceTwo) + (4 * daySixOunceFour) + (6 * daySixOunceSix),
-        (2 * daySevenOunceTwo) + (4 * daySevenOunceFour) + (6 * daySevenOunceSix),
-
+        (2 * daySevenOunceTwo) + (4 * daySevenOunceFour) + (6 * daySevenOunceSix)
     ]]
     };
     var sleepData = {

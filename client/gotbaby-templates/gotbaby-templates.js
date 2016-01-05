@@ -91,7 +91,7 @@ console.log(Session.get("activeBaby"));
       );
 
       if(currentNap) {
-        return moment(currentNap.createdAt).fromNow();
+        return "asleep for " + moment(currentNap.createdAt).fromNow();
       }
       else {
         return "awake";

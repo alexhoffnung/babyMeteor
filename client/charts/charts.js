@@ -190,7 +190,8 @@ Template.charts.onRendered(function () {
       labelInterpolationFnc: function(value) {
         return value[0]
       },
-      stackBars: true
+      stackBars: true,
+      onlyInteger: true
     };
 
     var responsiveOptions = [
@@ -210,6 +211,6 @@ Template.charts.onRendered(function () {
 
     new Chartist.Bar('#diaper-chart', diaperData, options, responsiveOptions);
     new Chartist.Bar('#meal-chart', mealData, options, responsiveOptions);
-    new Chartist.Bar('#sleep-chart', sleepData, options, responsiveOptions);
+    new Chartist.Line('#sleep-chart', sleepData, options, responsiveOptions);
 
 });

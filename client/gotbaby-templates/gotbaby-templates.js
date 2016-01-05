@@ -90,7 +90,12 @@ console.log(Session.get("activeBaby"));
         } 
       );
 
-      return moment(currentNap.createdAt).fromNow();
+      if(currentNap) {
+        return moment(currentNap.createdAt).fromNow();
+      }
+      else {
+        return moment().toDate();
+      }
     }
   });
 

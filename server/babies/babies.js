@@ -12,23 +12,7 @@ Babies.allow({
   Meteor.methods({
     removeAllBabies: function() {
       return Babies.remove({});
-    },
-    addBaby: function () {
-      // Make sure the user is logged in before inserting a sleep
-      if (! Meteor.userId()) {
-        throw new Meteor.Error("not-authorized");
-      }
-console.log("server addBaby")
-    //  Babies.update({ activeState: true }, { $set: { activeState: false } });
-/*
-      Babies.insert({
-        babyName: babyName,
-        activeState: true,
-        createdAt: new Date(),
-        owner: Meteor.userId(),
-        username: Meteor.user().username
-      });*/
-    },   
+    },  
     updateActiveState: function() {
       Babies.update({ activeState: true }, { $set: { activeState: false } });
     },

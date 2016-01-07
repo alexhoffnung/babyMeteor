@@ -33,7 +33,7 @@
     }
 
     var endTime = new Date();
-    var napLength = moment(currentNapStartTime).fromNow();
+    var napLength = moment.utc(moment(endTime,"DD/MM/YYYY HH:mm:ss").diff(moment(currentNapStartTime,"DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss");
 
     Sleeps.update({ _id: currentNapId }, { $set: { currentNap: false, endSleep:endTime, napLength:napLength} });
   },

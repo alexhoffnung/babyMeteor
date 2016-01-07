@@ -6,6 +6,6 @@ Template.babyCard.helpers({
     let activeBaby = Session.get("activeBaby");
     console.log(activeBaby)
     console.log(currentUserId)
-    return Babies.find({ $and: [{owner: currentUserId},{babyName:activeBaby}]});
+    return Babies.findOne({ $and: [{owner: currentUserId},{babyName:activeBaby}]});
   }
 });

@@ -1,2 +1,0 @@
-Template.addBabyForm.events({
-});

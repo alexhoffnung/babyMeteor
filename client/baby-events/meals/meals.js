@@ -6,17 +6,7 @@ Template.meals.helpers({
   meals: function () {
     var currentUserId = Meteor.userId();
     var activeBaby = Session.get("activeBaby");
-    if (Session.get("hideCompleted")) {
-      // If hide completed is checked, filter meals
-      return Meals.find({ $and: [ {checked: {$ne: true}}, { owner:currentUserId }, { babyName:activeBaby }] },  {sort: {createdAt: -1}});
-    } 
-    else {
-      // Otherwise, return all of the meals
-      return Meals.find({ $and: [ { owner:currentUserId }, { babyName:activeBaby }] }, {sort: {createdAt: -1}});
-    }
-  },
-  hideCompleted: function () {
-    return Session.get("hideCompleted");
+    return Meals.find({ $and: [ { owner:currentUserId }, { babyName:activeBaby }] }, {sort: {createdAt: -1}});
   },
   incompleteCount: function () {
       var currentUserId = Meteor.userId();
@@ -33,7 +23,6 @@ Template.meals.helpers({
   }
 });
 
-
 Template.meals.events({
     "submit .add-meal": function (event) {
     // Prevent default browser form submit
@@ -47,7 +36,6 @@ Template.meals.events({
 
     var activeBaby = Session.get("activeBaby");
 
-    // Insert a meal text into the collection
     Meteor.call("addMeal", text, 0, activeBaby);
 
     // Clear form

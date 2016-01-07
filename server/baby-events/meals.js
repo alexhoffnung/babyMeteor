@@ -16,7 +16,7 @@
     Meals.insert({
       text: text,
       ounces: ounces,
-      babyName: activeBaby,
+      babyId: activeBaby,
       createdAt: new Date(),
       createdAtStart: moment().startOf('day').toDate(),
       owner: Meteor.userId(),

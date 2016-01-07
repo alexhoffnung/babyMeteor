@@ -16,7 +16,7 @@
     Diapers.insert({
       text: text,
       mess: mess,
-      babyName: activeBaby,
+      babyId: activeBaby,
       createdAt: new Date(),
       createdAtStart: moment().startOf('day').toDate(),
       owner: Meteor.userId(),

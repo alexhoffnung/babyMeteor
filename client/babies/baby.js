@@ -6,29 +6,18 @@ Template.baby.helpers({
 
 
 Template.baby.events({
-  "click .toggle-checked": function () {
-    // Set the checked property to the opposite of its current value
-    Meteor.call("setCheckedBaby", this._id, ! this.checked);
-
-  },
   "click .delete": function () {
       Meteor.call("deleteBaby", this._id);
   },
   "click .activeBaby": function () {
-      if(this.activeState === true)
-      {
-        console.log("spank hank");
+      if(this.activeState === true) {
       }
-      else
-      {
+      else {
         var currentUserId = Meteor.userId();
-        var babyArray = Babies.findOne({$and:[{owner:currentUserId},{activeState:true}]});
-        var prevBabyId = babyArray._id;
-    //    babyArray.forEach(function (baby) {
-    //      prevBabyId = baby._id;
-    //    });
+        var baby = Babies.findOne({$and:[{owner:currentUserId},{activeState:true}]});
+        var prevBabyId = baby._id;
 
-        Session.set("activeBaby", this.babyName);
+        Session.set("activeBaby", this._id);
         Meteor.call("setActiveBaby", this._id, prevBabyId);
       }
   }

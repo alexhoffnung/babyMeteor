@@ -12,7 +12,7 @@ Template.addBabyForm.events({
  //   Session.set("activeBaby",babyName);
  //   console.log(Session.get("activeBaby"));
     // Insert a meal text into the collection
- //   Meteor.call("addBaby");
+ //a   Meteor.call("addBaby");
 
     // Clear form
 //    event.target.text.value = "";

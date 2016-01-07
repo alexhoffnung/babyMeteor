@@ -1,5 +1,5 @@
 <template name="addBabyForm">
-    {{#autoForm collection="Babies" id="insertBabyForm" type="insert"}}
+    {{#autoForm collection="Babies" id="insertBabyForm" type="insert" meteormethod="addBaby"}}
     <fieldset>
       {{> afQuickField name='babyName'}}
       {{> afQuickField name='dob'}}

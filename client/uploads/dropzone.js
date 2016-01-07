@@ -4,18 +4,15 @@ Template.dropzone.events({
 
     FS.Utility.eachFile(e, function(file) {
       var newFile = new FS.File(file);
-      newFile.username = user.username;
+      newFile.username = user.emails[0].address;
       newFile.userId = user._id;
-      console.log(user.username)
-      newFile.userSlug = Slug.slugify(user.username);
-      console.log("out")
-      Images.insert(newFile, function (error, fileObj) {
-        if (error) {
-    		  toastr.error("Upload failed... please try again.");
-        } else {
-          toastr.success('Upload succeeded!');
-        }
-      });
+      console.log(user._id)
+      newFile.userSlug = Slug.slugify(user.emails[0].address); //changed from username to email address
+      console.log(user.emails[0].address)
+      if (! Meteor.userId()) {
+        throw new Meteor.Error("not-authorized");
+      }
+      Meteor.call("addImage", newFile);
     });
   }
 });

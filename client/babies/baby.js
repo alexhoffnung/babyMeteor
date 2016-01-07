@@ -22,11 +22,11 @@ Template.baby.events({
       else
       {
         var currentUserId = Meteor.userId();
-        var babyArray = Babies.find({$and:[{owner:currentUserId},{activeState:true}]});
-        var prevBabyId = 0;
-        babyArray.forEach(function (baby) {
-          prevBabyId = baby._id;
-        });
+        var babyArray = Babies.findOne({$and:[{owner:currentUserId},{activeState:true}]});
+        var prevBabyId = babyArray._id;
+    //    babyArray.forEach(function (baby) {
+    //      prevBabyId = baby._id;
+    //    });
 
         Session.set("activeBaby", this.babyName);
         Meteor.call("setActiveBaby", this._id, prevBabyId);

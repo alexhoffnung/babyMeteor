@@ -190,7 +190,7 @@ Template.charts.onRendered(function () {
       labelInterpolationFnc: function(value) {
         return value[0]
       },
-      stackBars: true,
+//      stackBars: true,
       onlyInteger: true
     };
 

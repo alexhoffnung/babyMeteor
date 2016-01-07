@@ -21,7 +21,18 @@ if (Meteor.isClient) {
     },
     incompleteCount: function () {
       var currentUserId = Meteor.userId();
-      return Diapers.find( { $and: [ {checked: {$ne: true}}, { owner:currentUserId } ] } ).count();
+      var activeBaby = Session.get("activeBaby");
+      var today = moment().add(-1,'days')
+      console.log(today._d)
+      console.log(activeBaby)
+      return Diapers.find(        
+        { $and: [ 
+          {createdAt: {$gte: today._d}},
+          {babyName:activeBaby},
+          {owner:currentUserId}
+          ] 
+        } 
+      ).count();
     }
   });
 

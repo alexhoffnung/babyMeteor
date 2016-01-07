@@ -19,11 +19,17 @@ Template.meals.helpers({
     return Session.get("hideCompleted");
   },
   incompleteCount: function () {
-    var currentUserId = Meteor.userId();
-    var activeBaby = Session.get("activeBaby");
-    var today = new Date();
-    console.log(today);
-    return Meals.find( { $and: [ {checked: {$ne: true}}, { babyName:activeBaby }, { owner:currentUserId } ] } ).count();
+      var currentUserId = Meteor.userId();
+      var activeBaby = Session.get("activeBaby");
+      var today = moment().add(-1,'days');
+      return Meals.find( 
+        { $and: [ 
+          {createdAt: {$gte: today._d}},
+          {babyName:activeBaby},
+          {owner:currentUserId}
+          ] 
+        } 
+      ).count();
   }
 });
 

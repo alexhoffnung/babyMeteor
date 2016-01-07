@@ -7,21 +7,20 @@ if (Meteor.isClient) {
     sleeps: function () {
       var currentUserId = Meteor.userId();
       var activeBaby = Session.get("activeBaby");
-      if (Session.get("hideCompleted")) {
-        // If hide completed is checked, filter tasks
-        return Sleeps.find({ $and: [ {checked: {$ne: true}}, { owner:currentUserId }, { babyName:activeBaby } ] },  {sort: {createdAt: -1}});
-      } 
-      else {
-        // Otherwise, return all of the tasks
-        return Sleeps.find({ $and: [ { owner:currentUserId }, { babyName:activeBaby } ] }, {sort: {createdAt: -1}});
-      }
-    },
-    hideCompleted: function () {
-      return Session.get("hideCompleted");
+      return Sleeps.find({ $and: [ { owner:currentUserId }, { babyName:activeBaby } ] }, {sort: {createdAt: -1}});
     },
     incompleteCount: function () {
       var currentUserId = Meteor.userId();
-      return Sleeps.find( { $and: [ {checked: {$ne: true}}, { owner:currentUserId } ] } ).count();
+      var activeBaby = Session.get("activeBaby");
+      var today = moment().add(-1,'days');
+      return Sleeps.find( 
+        { $and: [ 
+          {createdAt: {$gte: today._d}},
+          {babyName:activeBaby},
+          {owner:currentUserId}
+          ] 
+        } 
+      ).count();
     }
   });
 

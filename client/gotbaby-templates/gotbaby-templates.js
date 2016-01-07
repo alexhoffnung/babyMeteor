@@ -3,8 +3,6 @@
       var currentUserId = Meteor.userId();
       var activeBaby = Session.get("activeBaby");
       var today = moment().add(-1,'days');
-      console.log(today._d)
-      console.log(activeBaby)
       return Meals.find( 
         { $and: [ 
           {createdAt: {$gte: today._d}},
@@ -91,7 +89,7 @@ console.log(Session.get("activeBaby"));
       );
 
       if(currentNap) {
-        return "asleep for " + moment(currentNap.createdAt).fromNow();
+        return "fell asleep " + moment(currentNap.createdAt).fromNow();
       }
       else {
         return "awake";

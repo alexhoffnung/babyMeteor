@@ -4,7 +4,7 @@ Template.sleeps.helpers({
   sleeps: function () {
     var currentUserId = Meteor.userId();
     var activeBaby = Session.get("activeBaby");
-    return Sleeps.find({ $and: [ { owner:currentUserId }, { babyName:activeBaby } ] }, {sort: {createdAt: -1}});
+    return Sleeps.find({ $and: [ { owner:currentUserId }, { babyId:activeBaby } ] }, {sort: {createdAt: -1}});
   },
   incompleteCount: function () {
     var currentUserId = Meteor.userId();
@@ -13,7 +13,7 @@ Template.sleeps.helpers({
     return Sleeps.find( 
       { $and: [ 
         {createdAt: {$gte: today._d}},
-        {babyName:activeBaby},
+        {babyId:activeBaby},
         {owner:currentUserId}
         ] 
       } 

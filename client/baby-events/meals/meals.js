@@ -6,7 +6,7 @@ Template.meals.helpers({
   meals: function () {
     var currentUserId = Meteor.userId();
     var activeBaby = Session.get("activeBaby");
-    return Meals.find({ $and: [ { owner:currentUserId }, { babyName:activeBaby }] }, {sort: {createdAt: -1}});
+    return Meals.find({ $and: [ { owner:currentUserId }, { babyId:activeBaby }] }, {sort: {createdAt: -1}});
   },
   incompleteCount: function () {
       var currentUserId = Meteor.userId();
@@ -15,7 +15,7 @@ Template.meals.helpers({
       return Meals.find( 
         { $and: [ 
           {createdAt: {$gte: today._d}},
-          {babyName:activeBaby},
+          {babyId:activeBaby},
           {owner:currentUserId}
           ] 
         } 

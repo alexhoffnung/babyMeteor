@@ -4,7 +4,7 @@ Template.diapers.helpers({
   diapers: function () {
     var currentUserId = Meteor.userId();
     var activeBaby = Session.get("activeBaby");
-    return Diapers.find({ $and: [ { owner:currentUserId }, {babyName:activeBaby} ] }, {sort: {createdAt: -1}});
+    return Diapers.find({ $and: [ { owner:currentUserId }, {babyId:activeBaby} ] }, {sort: {createdAt: -1}});
   },
   incompleteCount: function () {
     var currentUserId = Meteor.userId();
@@ -13,7 +13,7 @@ Template.diapers.helpers({
     return Diapers.find(        
       { $and: [ 
         {createdAt: {$gte: today._d}},
-        {_id:activeBaby},
+        {babyId:activeBaby},
         {owner:currentUserId}
         ] 
       } 

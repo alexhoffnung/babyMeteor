@@ -20,7 +20,7 @@
       createdAt: new Date(),
       createdAtStart: moment().startOf('day').toDate(),
       endSleep: new Date(),
-      napLength: new Date(),
+      napLength: "in progress...zzz...",
       owner: Meteor.userId(),
       username: Meteor.user().username
     });

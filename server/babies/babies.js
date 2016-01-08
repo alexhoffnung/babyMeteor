@@ -10,7 +10,8 @@ Babies.allow({
     },
     deleteBaby: function (babyId) {
     var baby = Babies.findOne(babyId);
-    if (baby.owner !== Meteor.userId()) {
+    var currentUserId = Meteor.userId();
+    if (baby.owner !== currentUserId) {
       throw new Meteor.Error("not-authorized");
     }
  
@@ -19,6 +20,22 @@ Babies.allow({
     Meals.remove({babyId:babyId});
     Diapers.remove({babyId:babyId});
     Sleeps.remove({babyId:babyId});
+
+    var baby = Babies.findOne({ 
+      $and:[
+        {activeState:true},
+        {owner:currentUserId}
+      ]
+    });
+    if(!baby){
+      baby = Babies.findOne({owner:currentUserId});
+      if(baby){
+        Babies.update(baby._id,{$set:{activeState:true}});
+      }
+      else{
+        // ADD BABY!!!
+      }
+    }
   },
   setActiveBaby: function (babyId, prevBabyId) {
       var baby = Babies.findOne(babyId);

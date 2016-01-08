@@ -1,8 +1,3 @@
-/*********************************
-*
-*   Baby events
-*
-*********************************/
 Babies.allow({
   insert: function () { return true; },
   update: function () { return true; },
@@ -10,38 +5,20 @@ Babies.allow({
 });
 
   Meteor.methods({
-    removeAllBabies: function() {
-      return Babies.remove({});
-    },  
     updateActiveState: function() {
       Babies.update({ activeState: true }, { $set: { activeState: false } });
     },
     deleteBaby: function (babyId) {
     var baby = Babies.findOne(babyId);
-    if (baby.private && baby.owner !== Meteor.userId()) {
-      // If the baby is private, make sure only the owner can delete it
+    if (baby.owner !== Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
  
-      Babies.remove(babyId);
-    },
-      setCheckedBaby: function (babyId, setChecked) {
-      var baby = Babies.findOne(babyId);
-      if (baby.private && baby.owner !== Meteor.userId()) {
-        // If the baby is private, make sure only the owner can check it off
-        throw new Meteor.Error("not-authorized");
-      }
-    Babies.update(babyId, { $set: { checked: setChecked} });
-  },
-  setPrivateBaby: function (babyId, setToPrivate) {
-      var baby = Babies.findOne(babyId);
- 
-      // Make sure only the baby owner can make a baby private
-      if (baby.owner !== Meteor.userId()) {
-        throw new Meteor.Error("not-authorized");
-      }
- 
-      Babies.update(babyId, { $set: { private: setToPrivate } });
+    Babies.remove(babyId);
+    //Clean collections
+    Meals.remove({babyId:babyId});
+    Diapers.remove({babyId:babyId});
+    Sleeps.remove({babyId:babyId});
   },
   setActiveBaby: function (babyId, prevBabyId) {
       var baby = Babies.findOne(babyId);

@@ -3,17 +3,17 @@ Meteor.subscribe("diapers");
 Template.diapers.helpers({
   diapers: function () {
     var currentUserId = Meteor.userId();
-    var activeBaby = Session.get("activeBaby");
-    return Diapers.find({ $and: [ { owner:currentUserId }, {babyId:activeBaby} ] }, {sort: {createdAt: -1}});
+    var activeBaby = Babies.findOne({ $and: [ { owner:currentUserId }, {activeState:true} ] });
+    return Diapers.find({ $and: [ { owner:currentUserId }, {babyId:activeBaby._id} ] }, {sort: {createdAt: -1}});
   },
   incompleteCount: function () {
     var currentUserId = Meteor.userId();
-    var activeBaby = Session.get("activeBaby");
+    var activeBaby = Babies.findOne({ $and: [ { owner:currentUserId }, {activeState:true} ] });
     var today = moment().add(-1,'days')
     return Diapers.find(        
       { $and: [ 
         {createdAt: {$gte: today._d}},
-        {babyId:activeBaby},
+        {babyId:activeBaby._id},
         {owner:currentUserId}
         ] 
       } 
@@ -31,13 +31,8 @@ Template.diapers.events({
     // Get value from form element
     var text = event.target.value;
 
-    var activeBaby = Session.get("activeBaby");
-
-    Meteor.call("addDiaper", text, "", activeBaby);
+    Meteor.call("addDiaper", text, "");
 
     event.target.text.value = "";
-  },
-  "change .hide-completed input": function (event) {
-    Session.set("hideCompleted", event.target.checked);
   }
 });

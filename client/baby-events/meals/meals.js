@@ -1,21 +1,39 @@
-// This code only runs on the client
-
 Meteor.subscribe("meals");
 
 Template.meals.helpers({
   meals: function () {
     var currentUserId = Meteor.userId();
-    var activeBaby = Session.get("activeBaby");
-    return Meals.find({ $and: [ { owner:currentUserId }, { babyId:activeBaby }] }, {sort: {createdAt: -1}});
+    var activeBaby = Babies.findOne({
+        $and: [
+          {owner:currentUserId},
+          {activeState:true}
+        ]
+    });
+    return Meals.find( 
+      { $and: [ 
+        {createdAt: {$gte: today._d}},
+        {babyId:activeBaby._id},
+        {owner:currentUserId}
+        ] 
+      },
+      {
+        sort: {createdAt: -1}
+      }
+    );
   },
   incompleteCount: function () {
       var currentUserId = Meteor.userId();
-      var activeBaby = Session.get("activeBaby");
+      var activeBaby = Babies.findOne({
+        $and: [
+          {owner:currentUserId},
+          {activeState:true}
+        ]
+      });
       var today = moment().add(-1,'days');
       return Meals.find( 
         { $and: [ 
           {createdAt: {$gte: today._d}},
-          {babyId:activeBaby},
+          {babyId:activeBaby._id},
           {owner:currentUserId}
           ] 
         } 
@@ -25,23 +43,9 @@ Template.meals.helpers({
 
 Template.meals.events({
     "submit .add-meal": function (event) {
-    // Prevent default browser form submit
     event.preventDefault();
-
-    // Get current user id
-    var currentUserId = Meteor.userId();
-
-    // Get value from button element
     var text = event.target.text.value;
-
-    var activeBaby = Session.get("activeBaby");
-
-    Meteor.call("addMeal", text, 0, activeBaby);
-
-    // Clear form
+    Meteor.call("addMeal", text, 0);
     event.target.text.value = "";
-  },
-  "change .hide-completed input": function (event) {
-    Session.set("hideCompleted", event.target.checked);
   }
 });

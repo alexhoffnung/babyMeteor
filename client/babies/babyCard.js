@@ -3,7 +3,7 @@ Meteor.subscribe("babies");
 Template.babyCard.helpers({
   babies: function () {
     var currentUserId = Meteor.userId();
-    let activeBaby = Session.get("activeBaby");
-    return Babies.findOne({ $and: [{owner: currentUserId},{_id:activeBaby}]});
+    var activeBaby = Babies.findOne({ $and: [{owner: currentUserId},{activeState:true}]});
+    return Babies.findOne({ $and: [{owner: currentUserId},{_id:activeBaby._id}]});
   }
 });

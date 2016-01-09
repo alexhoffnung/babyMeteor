@@ -1,15 +1,20 @@
 Meteor.methods({
-  addDiaper: function (text, mess, activeBaby) {
-
-    // Make sure the user is logged in before inserting a diaper
+  addDiaper: function (text, mess) {
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
+
+    var activeBaby = Babies.findOne({ 
+      $and: [ 
+        { owner:Meteor.userId() }, 
+        { activeState:true } 
+      ] 
+    });
  
     Diapers.insert({
       text: text,
       mess: mess,
-      babyId: activeBaby,
+      babyId: activeBaby._id,
       createdAt: new Date(),
       createdAtStart: moment().startOf('day').toDate(),
       owner: Meteor.userId(),
@@ -19,10 +24,8 @@ Meteor.methods({
   deleteDiaper: function (diaperId) {
     var diaper = Diapers.findOne(diaperId);
     if (diaper.owner !== Meteor.userId()) {
-      // If the diaper is private, make sure only the owner can delete it
       throw new Meteor.Error("not-authorized");
     }
- 
     Diapers.remove(diaperId);
   }
 });

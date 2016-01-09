@@ -5,10 +5,22 @@ Meteor.subscribe("caretakers");
 Template.caretakers.helpers({
   caretakers: function () {
     var currentUserId = Meteor.userId();
-
-    var activeBaby = Session.get("activeBaby");
+    var activeBaby = Babies.findOne({
+      $and: [
+        { owner:currentUserId },
+        { activeState:true }
+      ]
+    });
     
-    return Caretakers.find( {$and:[ {owner: currentUserId} , {babyName: activeBaby} ]}, {sort: {createdAt: -1}});
+    return Caretakers.find({
+        $and:[ 
+            {owner: currentUserId}, 
+            {babyId: activeBaby._id}
+        ]
+    }, 
+    {
+        sort: {createdAt: -1}
+    });
   }
 });
 
@@ -18,16 +30,10 @@ Template.caretakers.events({
     // Prevent default browser form submit
     event.preventDefault();
 
-    // Get current user id
-    var currentUserId = Meteor.userId();
-
     // Get value from button element
     var caretakerEmail = event.target.text.value;
 
-    var baby = Babies.findOne({ activeState: true });
-console.log(baby._id);
-    // Insert a caretaker into the collection
-    Meteor.call("addCaretaker", caretakerEmail, baby._id, baby.babyName);
+    Meteor.call("addCaretaker", caretakerEmail);
 
     // Clear form
     event.target.text.value = "";

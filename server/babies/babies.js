@@ -37,16 +37,12 @@ Babies.allow({
       }
     }
   },
-  setActiveBaby: function (babyId, prevBabyId) {
-      var baby = Babies.findOne(babyId);
-      var prevBaby = Babies.findOne(prevBabyId);
- 
-      // Make sure only the baby owner can make a baby private
-      if (baby.owner !== Meteor.userId()) {
-        throw new Meteor.Error("not-authorized");
-      }
-      Babies.update(prevBabyId, { $set: { activeState: false } });
-      Babies.update(babyId, { $set: { activeState: true } });
+  setActiveBaby: function (babyId) {
+    var currentUserId = Meteor.userId();
+    var prevBaby = Babies.findOne({$and:[{owner:currentUserId},{activeState:true}]});
+
+    Babies.update(prevBaby._id, { $set: { activeState: false } });
+    Babies.update(babyId, { $set: { activeState: true } });
   }
 
   });

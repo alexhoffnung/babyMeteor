@@ -3,10 +3,7 @@ var addBabyHooks = {
     insert: function(doc) {
       if(Meteor.userId()){
         doc.userId = Meteor.userId();
-        console.log(doc)
-        Session.set('activeBaby',doc.babyName);
         Meteor.call("updateActiveState");
-    
         return doc;
       }
     }

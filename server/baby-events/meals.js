@@ -1,15 +1,20 @@
 Meteor.methods({
-  addMeal: function (text, ounces, activeBaby) {
-
-    // Make sure the user is logged in before inserting a meal
+  addMeal: function (text, ounces) {
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
 
+    var activeBaby = Babies.findOne({
+      $and: [
+        { owner:Meteor.userId() },
+        { activeState:true }
+      ]
+    });
+
     Meals.insert({
       text: text,
       ounces: ounces,
-      babyId: activeBaby,
+      babyId: activeBaby._id,
       createdAt: new Date(),
       createdAtStart: moment().startOf('day').toDate(),
       owner: Meteor.userId(),
@@ -18,8 +23,7 @@ Meteor.methods({
   },
   deleteMeal: function (mealId) {
     var meal = Meals.findOne(mealId);
-    if (meal.private && meal.owner !== Meteor.userId()) {
-      // If the meal is private, make sure only the owner can delete it
+    if (meal.owner !== Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
     Meals.remove(mealId);

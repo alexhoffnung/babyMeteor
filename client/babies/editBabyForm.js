@@ -1,10 +1,7 @@
 Template.editBabyForm.helpers({
   activeBabyDoc: function () {
-  	console.log("PETER PETER")
   	var currentUserId = Meteor.userId();
-    return Babies.findOne({ $and:[{owner:currentUserId},{_id:Session.get("activeBaby")}]});
-  },
-  isActiveBaby: function () {
-    return Session.equals("activeBaby", this._id);
+    var activeBaby = Babies.findOne({ $and: [{owner: currentUserId},{activeState:true}]});  	
+    return Babies.findOne({ $and:[{owner:currentUserId},{_id:activeBaby._id}]});
   }
 });

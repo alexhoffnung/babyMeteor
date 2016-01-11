@@ -1,29 +1,31 @@
+Meteor.subscribe("images");
+
 Template.photos.events({
    'change #myFileInput': function(event, template) {
       FS.Utility.eachFile(event, function(file) {
-        let activeBaby = Session.get("activeBaby");
+        var activeBaby = Babies.findOne({
+          $and: [
+            {owner:Meteor.userId()},
+            {activeState:true}
+          ]
+        });
         newFile = new FS.File(file);
         newFile.metadata = {
-          baby:activeBaby
+          babyId:activeBaby._id
         }
-        Images.insert(newFile, function (err, fileObj) {
-          if (err){
-            alert("Error Ocurred");
-             // handle error
-          } else {
-             // handle success depending what you need to do
-            var imagesURL = {
-              "photo.image": "/cfs/files/babyimages/" + fileObj._id
-            };
-          }
-        });
+        console.log("start")
+        Meteor.call("addPhoto", newFile);
      });
    }});
 
 Template.photos.helpers({
-  babyImages: function () {
-    let activeHome = Session.get("activeBaby");
-    console.log(babyImages.find({ "metadata.baby":activeBaby }));
-    return babyImages.find({ "metadata.baby":activeBaby }); // Where Images is an FS.Collection instance
+  images: function () {
+    var activeBaby = Babies.findOne({
+          $and: [
+            {owner:Meteor.userId()},
+            {activeState:true}
+          ]
+        });
+    return Images.findOne({ "metadata.babyId":activeBaby._id });
   }
 });

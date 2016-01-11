@@ -5,6 +5,10 @@ Babies.allow({
 });
 
   Meteor.methods({
+    setRandomBaby: function() {
+      var activeBaby = Babies.findOne({owner:currentUserId});
+      Babies.update({ babyId: activeBaby._id }, { $set: { activeState: true } });
+    },
     updateActiveState: function() {
       Babies.update({ activeState: true }, { $set: { activeState: false } });
     },

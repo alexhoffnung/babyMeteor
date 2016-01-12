@@ -40,3 +40,4 @@ chrismbeckett:toastr
 reactive-var
 cfs:filesystem
 autopublish
+cfs:ui

@@ -1,16 +1,10 @@
- Meteor.methods({
-  addPhoto: function (newFile) {
-    console.log("here")
-    Images.insert(newFile, function (err, fileObj) {
-      if (err){
-        alert("Error Ocurred");
-         // handle error
-      } else {
-         // handle success depending what you need to do
-        var imagesURL = {
-          "photo.image": "/cfs/files/images/" + fileObj._id
-        };
-      }
-    });
-  }
+Meteor.publish("images", function () {
+  return Images.find({ owner: this.userId });
+}); 
+
+Images.allow({
+  insert: function () { return true; },
+  update: function () { return true; },
+  remove: function () { return true; },
+  download:function(){ return true; }
 });

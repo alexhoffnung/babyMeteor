@@ -2,16 +2,24 @@
     <div id="babyCard">
     {{#with babies}}
   
-  <hr>
+    {{#each images}}
+      <div class="thumb">
+        <a href="{{this.url}}" target="_blank"><img src="{{this.url}}" alt="" class="thumbnail" height="150" width="150"></a>
+      </div>
+    {{/each}}
 
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Edit</button>
-        <a role="button" href="/caretakers" class="btn btn-info" id="shareBaby">Add Caretaker</a>
   <hr>
 
       <h1>name</h1> <h5>{{babyName}}</h5>
       <h4>dob</h4> <h5>{{formatDate dob}}</h5>
       <h4>sex</h4> <h5>{{gender}}</h5>
       <h4>allergies</h4> <h5>{{allergies}}</h5>
+
+  <hr>
+
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Edit</button>
+        <a role="button" href="/caretakers" class="btn btn-info" id="shareBaby">Add Caretaker</a>
+
     {{/with}}
     </div>
 

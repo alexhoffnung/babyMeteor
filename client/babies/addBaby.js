@@ -4,16 +4,6 @@ Template.addBaby.onRendered(function () {
 	    $("#txtname").focus();
 	});
 
-	var currentUserId = Meteor.userId();
-	var babyCount = Babies.find({owner:currentUserId}).count();
-
-	if (babyCount === 0) {
-		// show the modal onload
-		$('#modal-content').modal({
-		    show: true
-		});
-	}
-
 	// everytime the button is pushed, open the modal, and trigger the shown.bs.modal event
 	$('#openBtn').click(function () {
 	    $('#modal-content').modal({

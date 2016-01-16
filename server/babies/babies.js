@@ -6,12 +6,14 @@ Babies.allow({
 
 Meteor.methods({
   setRandomBaby: function() {
-    console.log("in setRandomBaby")
     var activeBaby = Babies.findOne({owner:currentUserId});
     Babies.update({ babyId: activeBaby._id }, { $set: { activeState: true } });
   },
   updateActiveState: function() {
-    Babies.update({ activeState: true }, { $set: { activeState: false } });
+    Babies.update(
+      { activeState: true }, 
+      { $set: { activeState: false }}
+    );
   },
   deleteBaby: function (babyId) {
   var baby = Babies.findOne(babyId);
@@ -21,8 +23,7 @@ Meteor.methods({
   }
 
   Babies.remove(babyId);
-  //Clean collections
-  Meals.remove({babyId:babyId});
+  Meals.remove({babyId:babyId});    //Clean collections
   Diapers.remove({babyId:babyId});
   Sleeps.remove({babyId:babyId});
 
@@ -38,7 +39,9 @@ Meteor.methods({
       Babies.update(baby._id,{$set:{activeState:true}});
     }
     else{
-      // ADD BABY!!!
+      $('#modal-content').modal({
+        show: true
+      });
     }
   }
 },
@@ -50,5 +53,4 @@ setActiveBaby: function (babyId) {
   }
   Babies.update(babyId, { $set: { activeState: true } });
 }
-
 });

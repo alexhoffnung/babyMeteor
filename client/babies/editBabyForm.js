@@ -7,7 +7,6 @@ Template.editBabyForm.helpers({
     		{activeState:true}
     	]
     });  
-    console.log(activeBaby._id);	
     return Babies.findOne({ 
     	$and:[
     		{owner:currentUserId},

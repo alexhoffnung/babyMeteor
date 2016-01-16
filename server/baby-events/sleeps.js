@@ -29,9 +29,16 @@ endSleep: function (currentNapId, currentNapStartTime) {
   }
 
   var endTime = new Date();
-  var napLength = moment.utc(moment(endTime,"DD/MM/YYYY HH:mm:ss").diff(moment(currentNapStartTime,"DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss");
+  var napLength = moment.utc(moment(
+    endTime,"DD/MM/YYYY HH:mm:ss").diff(
+    moment(currentNapStartTime,"DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss");
 
-  Sleeps.update({ _id: currentNapId }, { $set: { currentNap: false, endSleep:endTime, napLength:napLength} });
+  Sleeps.update(
+    { _id: currentNapId }, 
+    { $set: 
+      { currentNap: false, 
+        endSleep:endTime, 
+        napLength:napLength} });
 },
   deleteSleep: function (sleepId) {
   var sleep = Sleeps.findOne(sleepId);

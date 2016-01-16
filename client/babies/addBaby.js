@@ -6,7 +6,7 @@ Template.addBaby.onRendered(function () {
 
 	var currentUserId = Meteor.userId();
 	var babyCount = Babies.find({owner:currentUserId}).count();
-console.log("baby count = " + babyCount)
+
 	if (babyCount === 0) {
 		// show the modal onload
 		$('#modal-content').modal({

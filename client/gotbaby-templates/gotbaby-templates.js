@@ -102,14 +102,8 @@ Template.gotbabySleeps.helpers({
 
 Template.gotbabySleeps.events({
     "click .new-sleep": function (event) {
-    // Prevent default browser form submit
     event.preventDefault();
-
-    // Get current user id
     var currentUserId = Meteor.userId();
-
-    // Get value from button element
-    var direction = event.target.value;
 
     var text = "";
 
@@ -120,7 +114,13 @@ Template.gotbabySleeps.events({
       ]
     });
 
-    var currentNap = Sleeps.findOne({ $and:[{owner:currentUserId}, {babyId:activeBaby._id}, {currentNap:true} ]});
+    var currentNap = Sleeps.findOne({ 
+      $and:[
+        {owner:currentUserId}, 
+        {babyId:activeBaby._id}, 
+        {currentNap:true} 
+      ]
+    });
 
     if(!currentNap) {
       Meteor.call("addSleep", text);

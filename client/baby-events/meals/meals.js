@@ -9,6 +9,7 @@ Template.meals.helpers({
           {activeState:true}
         ]
     });
+    var today = moment().add(-1,'days')
     return Meals.find( 
       { $and: [ 
         {createdAt: {$gte: today._d}},

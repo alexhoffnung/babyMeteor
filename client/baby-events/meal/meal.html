@@ -2,7 +2,11 @@
   <li>
     <button class="delete">&times;</button>
 
+    {{#if isSolid}}
     <span class="text">{{ ounces }} ounces</span>
+    {{else}}
+    <span class="text">{{ text }}</span>
+    {{/if}}
     <span class="text">{{ formatDate createdAt }}</span>
     <span class="text">{{ createdBy }}</span>
     <span class="text">{{ babyName }}</span>

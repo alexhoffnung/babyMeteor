@@ -41,3 +41,5 @@ reactive-var
 cfs:filesystem
 autopublish
 cfs:ui
+juliancwirko:s-alert-slide
+juliancwirko:s-alert

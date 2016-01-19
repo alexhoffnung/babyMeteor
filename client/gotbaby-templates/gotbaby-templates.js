@@ -7,6 +7,7 @@ Template.gotbabyMeals.helpers({
         {activeState:true}
       ]
     });
+    console.log(activeBaby)
     var today = moment().add(-1,'days');
     return Meals.find( 
       { $and: [ 
@@ -20,17 +21,10 @@ Template.gotbabyMeals.helpers({
 });
 
 Template.gotbabyMeals.events({
-    "click .new-meal": function (event) {
-    // Prevent default browser form submit
+  "click .new-meal": function (event) {
     event.preventDefault();
-
-    // Get value from button element
     var ounces = event.target.value;
-
-    var text = "";
-
-    // Insert a meal into the collection
-    Meteor.call("addMeal", text, ounces);
+    Meteor.call("addMeal", "", ounces);
   }
 });
 
@@ -59,15 +53,9 @@ Template.gotbabyDiapers.helpers({
 
 Template.gotbabyDiapers.events({
     "click .new-diaper": function (event) {
-    // Prevent default browser form submit
     event.preventDefault();
-
-    // Get value from button element
     var mess = event.target.value;
-
-    var text = "";
-
-    Meteor.call("addDiaper", text, mess);
+    Meteor.call("addDiaper", "", mess);
   }
 });
 
@@ -104,8 +92,6 @@ Template.gotbabySleeps.events({
     "click .new-sleep": function (event) {
     event.preventDefault();
     var currentUserId = Meteor.userId();
-
-    var text = "";
 
     var activeBaby = Babies.findOne({
       $and: [

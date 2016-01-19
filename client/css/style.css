@@ -1,6 +1,17 @@
 /* CSS declarations go here */
 
+div.gotbaby-container {
+  margin-top: 30px;
+}
+
 button#charts-button {
+  color: #800080;
+  border: 2pt #800080 solid;
+  border-radius: 20px;
+  background-color: rgba(255,255,255,0.4);
+}
+
+button#last-button {
   color: #800080;
   border: 2pt #800080 solid;
   border-radius: 20px;

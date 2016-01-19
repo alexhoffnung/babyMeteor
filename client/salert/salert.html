@@ -4,7 +4,7 @@
 
 <template name="alert">
 
-<a class="alert-click-class">click</a>
+<a class="alert-click-class"><button class="glyphicon glyphicon-tasks" id="last-button"></button></a>
 
 </template>
 
@@ -12,9 +12,18 @@
 <template name="sAlertCustom">
 <div class="s-alert-box s-alert-{{condition}} s-alert-{{position}} s-alert-effect-{{effect}} s-alert-show" id="{{_id}}" style="{{boxPosition}}">
     <div class="s-alert-box-inner">
-        <h2>{{lastMeal.ounces}} ounces at {{formatTime lastMeal.createdAt}}</h2>
-        <h2>{{lastDiaper.mess}} diaper at {{formatTime lastDiaper.createdAt}}</h2>
-        <h2>Slept from {{formatTime lastSleep.createdAt}} until {{formatTime lastSleep.endSleep}}</h2>
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2"><h2>{{lastMeal.ounces}} ounces at {{formatTime lastMeal.createdAt}}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2"><h2>{{lastDiaper.mess}} diaper at {{formatTime lastDiaper.createdAt}}</h2>
+     	</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2"><h2>Slept from {{formatTime lastSleep.createdAt}} until {{formatTime lastSleep.endSleep}}</h2>
+       	</div>
+    </div>
     </div>
     <span class="s-alert-close"></span>
 </div>

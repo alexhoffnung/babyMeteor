@@ -109,7 +109,7 @@ Template.gotbabySleeps.events({
     });
 
     if(!currentNap) {
-      Meteor.call("addSleep", text);
+      Meteor.call("addSleep", "");
     }
     else {
       Meteor.call("endSleep", currentNap._id, currentNap.createdAt);

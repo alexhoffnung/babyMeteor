@@ -2,8 +2,12 @@ Template.alert.events({
     'click .alert-click-class': function (e) {
         e.preventDefault();
         console.log('Alert link clicked!');
-        sAlert.info('');
+		sAlert.info('');
     }
+});
+
+Template.alert.onRendered(function () {
+  sAlert.info('');
 });
 
 UI.registerHelper('formatTime', function(context, options) {
@@ -79,7 +83,7 @@ Meteor.startup(function () {
     sAlert.config({
         effect: 'genie',
         position: 'top',
-        timeout: 3000,
+        timeout: 5000,
         html: true,
         onRouteClose: true,
         stack: false,
@@ -104,5 +108,5 @@ Meteor.startup(function () {
         //     /* Code here will be executed once the alert closes. */
         // }
     });
-
+	sAlert.info('');
 });

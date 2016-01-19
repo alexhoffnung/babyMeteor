@@ -13,8 +13,19 @@
 <div class="s-alert-box s-alert-{{condition}} s-alert-{{position}} s-alert-effect-{{effect}} s-alert-show" id="{{_id}}" style="{{boxPosition}}">
     <div class="s-alert-box-inner">
     <div class="row">
-        <div class="col-xs-8 col-xs-offset-2"><h2>{{lastMeal.ounces}} ounces at {{formatTime lastMeal.createdAt}}</h2>
+        <div class="col-xs-8 col-xs-offset-2">
+        	<h2>
+        	{{#if isSolid}}
+    			<span class="text">{{ lastMeal.text }}</span>
+		    {{else}}
+		    	<span class="text">{{ lastMeal.ounces }} ounces</span>
+		    {{/if}} 
+		    at {{formatTime lastMeal.createdAt}}</h2>
         </div>
+
+
+
+
     </div>
     <div class="row">
         <div class="col-xs-8 col-xs-offset-2"><h2>{{lastDiaper.mess}} diaper at {{formatTime lastDiaper.createdAt}}</h2>

@@ -48,5 +48,8 @@ Template.meals.events({
     var text = event.target.text.value;
     Meteor.call("addMeal", text, 0);
     event.target.text.value = "";
+  },
+  "click .new-meal": function (event) {
+    console.log("ewrwerrwerwe")
   }
 });

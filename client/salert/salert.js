@@ -16,6 +16,25 @@ UI.registerHelper('formatTime', function(context, options) {
 });
 
 Template.sAlertCustom.helpers({
+  "isSolid": function () {
+  	var currentUserId = Meteor.userId();
+    var activeBaby = Babies.findOne({
+      $and: [
+        {owner:currentUserId},
+        {activeState:true}
+      ]
+    });
+
+    var meal = Meals.findOne( 
+      { $and: [ 
+        {babyId:activeBaby._id},
+        {owner:currentUserId}
+        ] 
+      },
+      { sort: {createdAt:-1}}
+    );
+    return meal.ounces === 0;
+  },
   "lastMeal": function () {
     var currentUserId = Meteor.userId();
     var activeBaby = Babies.findOne({

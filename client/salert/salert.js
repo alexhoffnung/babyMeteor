@@ -15,15 +15,17 @@ Template.sAlertCustom.helpers({
         {activeState:true}
       ]
     });
-    var today = moment().add(-1,'days');
-    return Meals.find( 
+
+    var meal = Meals.findOne( 
       { $and: [ 
-        {createdAt: {$gte: today._d}},
         {babyId:activeBaby._id},
         {owner:currentUserId}
         ] 
-      } 
-    ).count();
+      },
+      { sort: {createdAt:-1}}
+    );
+    console.log(meal)
+    return moment(meal.createdAt).fromNow();
   }
 });
 Meteor.startup(function () {

@@ -75,6 +75,25 @@ Template.sAlertCustom.helpers({
 
     return diaper;
   },
+  "isAsleep": function () {
+  	var currentUserId = Meteor.userId();
+    var activeBaby = Babies.findOne({
+      $and: [
+        {owner:currentUserId},
+        {activeState:true}
+      ]
+    });
+
+    var sleep = Sleeps.findOne( 
+      { $and: [ 
+        {babyId:activeBaby._id},
+        {owner:currentUserId}
+        ] 
+      },
+      { sort: {createdAt:-1}}
+    );
+    return sleep.currentNap;
+  },
   "lastSleep": function () {
     var currentUserId = Meteor.userId();
     var activeBaby = Babies.findOne({

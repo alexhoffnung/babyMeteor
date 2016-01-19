@@ -2,12 +2,17 @@ Template.alert.events({
     'click .alert-click-class': function (e) {
         e.preventDefault();
         console.log('Alert link clicked!');
-        sAlert.success('Last Meal: <a href="/babies" class="alert-click-class">{{incompleteCount}}</a>');
+        sAlert.info('');
     }
 });
 
+UI.registerHelper('formatTime', function(context, options) {
+  if(context)
+    return moment(context).format('hh:mm');
+});
+
 Template.sAlertCustom.helpers({
-  "incompleteCount": function () {
+  "lastMeal": function () {
     var currentUserId = Meteor.userId();
     var activeBaby = Babies.findOne({
       $and: [
@@ -24,10 +29,51 @@ Template.sAlertCustom.helpers({
       },
       { sort: {createdAt:-1}}
     );
-    console.log(meal)
-    return moment(meal.createdAt).fromNow();
+
+    return meal;
+  },
+  "lastDiaper": function () {
+    var currentUserId = Meteor.userId();
+    var activeBaby = Babies.findOne({
+      $and: [
+        {owner:currentUserId},
+        {activeState:true}
+      ]
+    });
+
+    var diaper = Diapers.findOne( 
+      { $and: [ 
+        {babyId:activeBaby._id},
+        {owner:currentUserId}
+        ] 
+      },
+      { sort: {createdAt:-1}}
+    );
+
+    return diaper;
+  },
+  "lastSleep": function () {
+    var currentUserId = Meteor.userId();
+    var activeBaby = Babies.findOne({
+      $and: [
+        {owner:currentUserId},
+        {activeState:true}
+      ]
+    });
+
+    var sleep = Sleeps.findOne( 
+      { $and: [ 
+        {babyId:activeBaby._id},
+        {owner:currentUserId}
+        ] 
+      },
+      { sort: {createdAt:-1}}
+    );
+
+    return sleep;
   }
 });
+
 Meteor.startup(function () {
 
     sAlert.config({
